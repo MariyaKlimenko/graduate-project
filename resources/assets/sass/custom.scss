@@ -1,0 +1,56 @@
+
+$violet: rgb(64, 0, 128);
+$greyblue: rgba(208, 208, 225, 0.8);
+$dark-violet: rgba(13, 0, 26, 0.95);
+$light-green: rgba(242, 255, 230, 0.74);
+$red: rgb(153, 0, 0);
+
+.greyblue-text {
+  color: $greyblue !important;
+}
+
+.card-shadow {
+  box-shadow: 0 0px 70px 0 rgba(0, 0, 0, 0.8), 0 30px 30px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+.card-background {
+  background-color: $dark-violet !important;
+}
+
+.auth-input-width {
+  width: 300px !important;
+}
+
+.tm-sidebar-left {
+  background-color: $dark-violet;
+  position:fixed;
+  top:0;
+  bottom:0;
+  box-sizing:border-box;
+  width:190px !important;
+  padding:100px 40px 60px 40px;
+  border-right:1px #e5e5e5 solid;
+  overflow:auto
+}
+
+.nav-item {
+  font-size: 12pt !important;
+  color: #c7c7c7 !important;
+}
+.nav-item:hover {
+  color: #9c9c9c !important;
+}
+
+.main-block {
+  position: absolute;
+  background-color: $light-green;
+  height: 100%;
+  right: 0;
+  left: 185px;
+  bottom:0;
+  top:0;
+}
+
+.warning-badge {
+  background-color: $red !important;
+}

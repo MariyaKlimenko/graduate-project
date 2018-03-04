@@ -1,0 +1,47 @@
+version: '3'
+services:
+
+    php-fpm:
+        image: eugenebalaban/laravel-php-fpm
+        volumes:
+            - ./:/var/www/html
+        links:
+            - database
+        environment:
+            - XDEBUG_CONFIG=remote_host=172.17.0.1
+            - PHP_IDE_CONFIF=serverName=laravel
+
+    nginx:
+        image: eugenebalaban/laravel-nginx
+        links:
+            - php-fpm
+        volumes:
+            - ./public:/var/www/html/public
+            - ./storage/nginx-logs:/var/log/nginx
+        ports:
+            - "8080:80"
+
+    ssh:
+        image: eugenebalaban/laravel-php-fpm-ssh
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - "2229:22"
+
+    database:
+        image: mysql:5.7
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=laravel
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=root1
+        ports:
+            - "3309:3306"
+        volumes:
+            - ./storage/mysql-data:/var/lib/mysql
+
+    node:
+        image: eugenebalaban/laravel-node
+        volumes:
+            - ./:/var/www/html
+        command: npm run watch
