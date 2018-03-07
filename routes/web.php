@@ -15,3 +15,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('users/create', 'UserController@showCreateForm')
+    ->name('showUserCreateForm')
+    ->middleware('level:3');

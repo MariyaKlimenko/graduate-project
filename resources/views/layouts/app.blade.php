@@ -31,6 +31,9 @@
                         <span class="uk-badge warning-badge" uk-tooltip="title: You need to complete your CV.; pos: right">!</span>
                     </a>
                 </li>
+                @role('administrator')
+                    <li><a href="{{ route('showUserCreateForm') }}" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: plus"></span> Add user</a></li>
+                @endrole
                 <li><a href="#" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: users"></span> All CVs</a></li>
                 <li><a href="#" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: cog"></span> Settings</a></li>
                 <li><a href="#" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: question"></span> Help</a></li>

@@ -6,14 +6,14 @@
 
             <div class="uk-card-secondary card-background uk-card uk-card-body card-shadow uk-text-center">
 
-                <h3 class="uk-heading-line uk-text-center uk-text-muted"><span>Log in</span></h4>
+                <h3 class="uk-heading-line uk-text-center uk-text-muted"><span>Вход в систему</span></h4>
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="uk-margin ">
                             <div class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                <input class="uk-input auth-input-width" name="email" placeholder="E-mail" type="email" value="{{ old('email') }}" required autofocus>
+                                <input class="uk-input auth-input-width" name="email" placeholder="Эл. адресс" type="email" value="{{ old('email') }}" required autofocus>
 
                             </div>
                             @if ($errors->has('email'))
@@ -27,7 +27,7 @@
                         <div class="uk-margin">
                             <div class="uk-inline">
                                 <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-                                <input class="uk-input auth-input-width" placeholder="Password" type="password" name="password" required>
+                                <input class="uk-input auth-input-width" placeholder="Пароль" type="password" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <br>
@@ -37,8 +37,7 @@
                                 @endif
                             </div>
                         </div>
-                        <p>Don`t have an account? <a class="uk-link-muted" href="{{ route('register') }}">Register</a></p>
-                        <button class="uk-button uk-button-default" type="submit">Log in</button>
+                        <button class="uk-button uk-button-default" type="submit">Войти</button>
                     </form>
             </div>
         </div>
