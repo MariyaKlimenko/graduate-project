@@ -1,3 +1,7 @@
+* {
+  font-family: 'Didact Gothic', sans-serif !important;
+}
+
 .greyblue-text {
   color: rgba(208, 208, 225, 0.8) !important;
 }
@@ -39,15 +43,20 @@
 
 .main-block {
   position: absolute;
-  background-color: rgba(242, 255, 230, 0.74);
   height: 100%;
   right: 0;
-  left: 185px;
+  left: 185px !important;
   bottom: 0;
   top: 0;
+  padding: 30px 30px 30px 30px;
 }
 
 .warning-badge {
   background-color: #990000 !important;
+}
+
+.create-user-buttons {
+  right: 30px;
+  position: absolute;
 }
 

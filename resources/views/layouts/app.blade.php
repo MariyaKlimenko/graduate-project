@@ -17,9 +17,10 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/css/uikit.min.css" />
-
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Play" rel="stylesheet">
 </head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     @auth
         <div class="tm-sidebar-left">
@@ -60,7 +61,6 @@
 {{--
     <script src="{{ asset('js/app.js') }}"></script>
 --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>

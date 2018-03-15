@@ -18,4 +18,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('users/create', 'UserController@showCreateForm')
     ->name('showUserCreateForm')
-    ->middleware('level:3');
+    ->middleware('auth', 'level:3');
+
+Route::post('users/store', 'UserController@store')
+    ->name('storeUser')
+    ->middleware('auth', 'level:3');
