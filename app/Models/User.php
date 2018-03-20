@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Ultraware\Roles\Traits\HasRoleAndPermission;
@@ -26,6 +27,23 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'remember_token',
     ];
+
+    /**
+     * Set encrypted password attribute.
+     * @param string $password
+     */
+    public function setPasswordAttribute(string $password): void
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Get the info of the user.
+     */
+    public function info()
+    {
+        return $this->hasOne(Info::class);
+    }
 }

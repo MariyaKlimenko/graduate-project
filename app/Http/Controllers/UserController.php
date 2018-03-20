@@ -3,12 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Info;
 use App\Models\Role;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    protected $userService;
+
+    /**
+     * UserController constructor.
+     * @param UserService $userService
+     */
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Stores new user and attaches a role to it.
      * @param StoreUserRequest $request
@@ -16,18 +30,17 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $userData = [
-            'name'      => $request->input('name'),
-            'surname'   => $request->input('surname'),
-            'email'     => $request->input('email'),
-            'password'  => bcrypt('111111'),
-        ];
-        $user = User::firstOrCreate($userData);
-
-        $role = Role::where('name', $request->input('role'))->first();
-
-        $user->attachRole($role);
-        return redirect()->route('home');
+        $data = $request->all();
+        $data['password'] = '111111';
+        $user = $this->userService->store($data);
+        if (!$user) {
+            return response()->json([
+                'type' => 'error',
+                'title' => 'Ошибка',
+                'message' => 'Возникла ошибка.'
+            ]);
+        }
+        return $user;
     }
 
     /**

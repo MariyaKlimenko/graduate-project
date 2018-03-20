@@ -24,11 +24,21 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'position' => 'required|string||max:255',
-            'location' => 'required|string||max:255',
+            'name'          => 'required|string|max:255',
+            'surname'       => 'required|string|max:255',
+            'email'         => 'required|string|email|max:255|unique:users',
+            'position'      => 'nullable|string|max:255',
+            'location'      => 'nullable|string|max:255',
+            'department'    => 'nullable|string|max:255',
+            'phone'         => 'nullable|numeric|max:10'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Имя должно быть заполнено.',
+            'surname.required' => 'Имя должно быть заполнено.',
         ];
     }
 }
