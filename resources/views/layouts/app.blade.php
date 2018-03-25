@@ -14,32 +14,56 @@
     {{--
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     --}}
+
+    <link href="{{ asset('css/uikit.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/ionicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/css/uikit.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Play" rel="stylesheet">
 </head>
 <body>
+{{--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+--}}
 
     @auth
         <div class="tm-sidebar-left">
             <ul class="uk-nav uk-nav-primary uk-nav-left uk-margin-auto-vertical">
                 <li class="uk-nav-header"></li>
-                <li><a href="#" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: home"></span > Home</a></li>
+                <li><a href="#" class="nav-item"><i class="icon ion-home icon-nav-size"></i> Главная</a></li>
                 <li><a href="#" class="nav-item">
-                        <span class="uk-margin-small-right" uk-icon="icon: user"></span> Profile
-                        <span class="uk-badge warning-badge" uk-tooltip="title: You need to complete your CV.; pos: right">!</span>
+                        <i class="icon ion-person icon-nav-size"></i> Моё CV
+                        <span class="uk-badge warning-badge" uk-tooltip="title: Заполните свое CV.; pos: right">!</span>
                     </a>
                 </li>
                 @role('administrator')
-                    <li><a href="{{ route('showUserCreateForm') }}" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: plus"></span> Add user</a></li>
+                     <li>
+                         <a href="{{ route('showUserCreateForm') }}" class="nav-item">
+                             <i class="icon ion-person-add icon-nav-size"></i>
+                              Создать CV
+                         </a>
+                     </li>
                 @endrole
-                <li><a href="#" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: users"></span> All CVs</a></li>
-                <li><a href="#" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: cog"></span> Settings</a></li>
-                <li><a href="#" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: question"></span> Help</a></li>
+                <li><a href="{{ route('showAllUsers') }}" class="nav-item">
+                        <i class="icon ion-person-stalker icon-nav-size"></i>
+                         Все CV
+                    </a>
+                </li>
+                <li><a href="#" class="nav-item">
+                        <i class="icon ion-settings icon-nav-size"></i>
+                         Настройки
+                    </a>
+                </li>
+                <li><a href="#" class="nav-item">
+                        <i class="icon ion-help-circled icon-nav-size"></i>
+                         Помощь
+                    </a>
+                </li>
                 <li class="uk-nav-divider "></li>
-                <li><a id="logout-button" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Log out</a>
+                <li><a id="logout-button" class="nav-item ">
+                        <i class="icon ion-log-out icon-nav-size"></i>
+                        Выйти
+                    </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
@@ -55,29 +79,11 @@
         @yield('content')
     @endguest
 
-
-
-<!-- Scripts -->
-{{--
+    <script src="{{ asset('js/manifest.js') }}"></script>
+    <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
---}}
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/uikit.min.js') }}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
-
-
-{{--
-Custom scripts
---}}
-
-    <script>
-        $(function () {
-            $('body').on('click', '#logout-button', function () {
-                console.log('LL');
-                $('#logout-form').submit();
-            });
-        });
-
-    </script>
 </body>
 </html>

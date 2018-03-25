@@ -23,3 +23,11 @@ Route::get('users/create', 'UserController@showCreateForm')
 Route::post('users/store', 'UserController@store')
     ->name('storeUser')
     ->middleware('auth', 'level:3');
+
+Route::get('users/show/all', 'UserController@showAll')
+    ->name('showAllUsers')
+    ->middleware('auth', 'level:3');
+
+Route::get('users/getDataTableData', 'UserController@getData')
+    ->name('users/getDataTableData')
+    ->middleware('auth', 'level:3');

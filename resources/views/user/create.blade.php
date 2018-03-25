@@ -12,9 +12,7 @@
                         <span class="uk-text-danger uk-text-bold" uk-tooltip="Обязательное поле для заполнения.">*</span>
                     </label>
                     <div class="uk-inline">
-                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: user"></span>
                         <input class="uk-input uk-form-width-large" name="name" placeholder="Имя" type="text" value="{{ old('name') }}" required autofocus>
-
                     </div>
                     @if ($errors->has('name'))
                         <br>
@@ -29,7 +27,6 @@
                         <span class="uk-text-danger uk-text-bold" uk-tooltip="Обязательное поле для заполнения.">*</span>
                     </label>
                     <div class="uk-inline">
-                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: user"></span>
                         <input class="uk-input uk-form-width-large" name="surname" placeholder="Фамилия" type="text" value="{{ old('surname') }}" required autofocus>
                     </div>
                     @if ($errors->has('surname'))
@@ -41,13 +38,11 @@
                 </div>
                 <div class="uk-margin">
                     <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">
-                        Электронный адресс
+                        Электронный адрес
                         <span class="uk-text-danger uk-text-bold" uk-tooltip="Обязательное поле для заполнения.">*</span>
                     </label>
                     <div class="uk-inline">
-                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: mail"></span>
                         <input class="uk-input uk-form-width-large" name="email" placeholder="Эл. адресс" type="email" value="{{ old('email') }}" required autofocus>
-
                     </div>
                     @if ($errors->has('email'))
                         <br>
@@ -61,9 +56,9 @@
                         Роль
                         <span class="uk-text-danger uk-text-bold" uk-tooltip="Обязательное поле для заполнения.">*</span>
                     </label>
-                    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                        <label><input class="uk-radio" type="radio" name="role" value="moderator"> Сотрудник (модератор)</label>
-                        <label><input class="uk-radio" type="radio" name="role"  value="employee" checked> Сотрудник</label>
+                    <div class="uk-margin uk-grid-small ">
+                        <label><input class="uk-radio" type="radio" name="role" value="moderator"> Сотрудник (модератор)</label><br>
+                        <label><input class="uk-radio" type="radio" name="role"  value="employee" checked> Сотрудник</label><br>
                         <label><input class="uk-radio" type="radio" name="role" value="candidate"> Кандидат</label>
                     </div>
                 </div>
@@ -73,7 +68,6 @@
                 <div class="uk-margin">
                     <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">Позиция</label>
                     <div class="uk-inline">
-                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: social"></span>
                         <input class="uk-input uk-form-width-large" name="position" placeholder="Позиция" type="text" value="{{ old('position') }}" autofocus>
                     </div>
                     @if ($errors->has('position'))
@@ -86,7 +80,6 @@
                 <div class="uk-margin">
                     <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">Отдел</label>
                     <div class="uk-inline">
-                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: social"></span>
                         <input class="uk-input uk-form-width-large" name="department" placeholder="Отдел" type="text" value="{{ old('department') }}" autofocus>
                     </div>
                     @if ($errors->has('department'))
@@ -99,7 +92,6 @@
                 <div class="uk-margin">
                     <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">Местоположение</label>
                     <div class="uk-inline">
-                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: location"></span>
                         <input class="uk-input uk-form-width-large" name="location" placeholder="Местоположение" type="text" value="{{ old('location') }}" autofocus>
                     </div>
                     @if ($errors->has('location'))
@@ -112,7 +104,6 @@
                 <div class="uk-margin">
                     <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">Моб. телефон</label>
                     <div class="uk-inline">
-                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: receiver"></span>
                         <input class="uk-input uk-form-width-large" name="phone" placeholder="Номер телефона" type="text" value="{{ old('phone') }}" autofocus>
                     </div>
                     @if ($errors->has('phone'))
@@ -134,12 +125,4 @@
        <button class="uk-button uk-button-primary create-user-button" id="submit-create-user-button"> Создать</button>
    </div>
 
-    <script>
-        $(function () {
-            $('body').on('click', '#submit-create-user-button', function () {
-               $('#create-user-form').submit();
-            });
-        });
-
-    </script>
 @endsection

@@ -14,11 +14,18 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $data = [
-            'name'      => 'admin',
-            'surname'   => 'admin',
-            'email'     => 'admin@admin.com',
-            'password'  => 'admin1',
+            'name'          => 'admin',
+            'surname'       => 'admin',
+            'email'         => 'admin@admin.com',
+            'password'      => 'admin1'
             ];
+
+        $infodata = [
+            'position'      => 'senior',
+            'department'    => 'admin',
+            'location'      => 'Харьков',
+            'phone'         => '10101010'
+        ];
 
         $admin = User::firstOrCreate($data);
 
@@ -27,6 +34,7 @@ class AdminSeeder extends Seeder
         $admin->attachRole($adminRole);
 
         $info = $admin->info()->firstOrNew([]);
+        $info->fill($infodata);
         $info->save();
     }
 }

@@ -10,7 +10,8 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "ultraware/roles": "^5.5",
-        "prettus/l5-repository": "*"
+        "prettus/l5-repository": "*",
+        "yajra/laravel-datatables-oracle": "*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

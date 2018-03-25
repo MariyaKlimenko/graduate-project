@@ -46,4 +46,6 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
     {
         return $this->hasOne(Info::class);
     }
+
+
 }

@@ -32,13 +32,13 @@ $red: rgb(153, 0, 0);
   bottom:0;
   box-sizing:border-box;
   width:190px !important;
-  padding:100px 40px 60px 40px;
+  padding:100px 25px 60px 25px;
   border-right:1px #e5e5e5 solid;
   overflow:auto
 }
 
 .nav-item {
-  font-size: 12pt !important;
+  font-size: 14pt !important;
   color: #c7c7c7 !important;
 }
 .nav-item:hover {
@@ -57,10 +57,17 @@ $red: rgb(153, 0, 0);
 }
 
 .warning-badge {
+  margin-bottom: 5px;
+  padding-bottom: 3px;
+  padding-left: 3px;
   background-color: $red !important;
 }
 
 .create-user-buttons {
   right: 30px;
   position: absolute;
+}
+
+.icon-nav-size {
+  font-size: 20px !important;
 }

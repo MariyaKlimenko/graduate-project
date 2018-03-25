@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
-use App\Models\Info;
-use App\Models\Role;
+
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -50,5 +49,16 @@ class UserController extends Controller
     public function showCreateForm()
     {
         return view('user.create');
+    }
+
+    public function showAll()
+    {
+        return view('user.all');
+    }
+
+    public function getData()
+    {
+        $users = User::with('info');
+        return DataTables::of($users)->make(true);
     }
 }
