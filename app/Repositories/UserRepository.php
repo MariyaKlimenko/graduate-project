@@ -21,4 +21,28 @@ class UserRepository extends Repository
     {
         return User::class;
     }
+
+    /**
+     * Returns data for users' datatable.
+     *
+     * @return mixed
+     */
+    public function getUserDataTableData()
+    {
+        $users = User::join('info', 'users.id', '=', 'info.user_id')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->join('roles', 'role_user.role_id', '=', 'roles.id')
+            ->select(
+                'users.id',
+                'users.name',
+                'users.surname',
+                'info.position',
+                'info.department',
+                'info.location',
+                'info.updated_at',
+                'roles.level'
+            )->get();
+
+        return $users;
+    }
 }

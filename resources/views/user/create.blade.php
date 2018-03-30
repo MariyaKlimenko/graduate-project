@@ -57,7 +57,9 @@
                         <span class="uk-text-danger uk-text-bold" uk-tooltip="Обязательное поле для заполнения.">*</span>
                     </label>
                     <div class="uk-margin uk-grid-small ">
-                        <label><input class="uk-radio" type="radio" name="role" value="moderator"> Сотрудник (модератор)</label><br>
+                        @level($roleLevels['administrator'])
+                            <label><input class="uk-radio" type="radio" name="role" value="moderator"> Сотрудник (модератор)</label><br>
+                        @endlevel
                         <label><input class="uk-radio" type="radio" name="role"  value="employee" checked> Сотрудник</label><br>
                         <label><input class="uk-radio" type="radio" name="role" value="candidate"> Кандидат</label>
                     </div>

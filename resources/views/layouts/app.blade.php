@@ -30,25 +30,27 @@
         <div class="tm-sidebar-left">
             <ul class="uk-nav uk-nav-primary uk-nav-left uk-margin-auto-vertical">
                 <li class="uk-nav-header"></li>
-                <li><a href="#" class="nav-item"><i class="icon ion-home icon-nav-size"></i> Главная</a></li>
-                <li><a href="#" class="nav-item">
+                <li><a href="{{ route('home') }}" class="nav-item"><i class="icon ion-home icon-nav-size"></i> Главная</a></li>
+                <li><a href="{{ route('users/show', [ 'id' => auth()->user()->id ]) }}" class="nav-item">
                         <i class="icon ion-person icon-nav-size"></i> Моё CV
                         <span class="uk-badge warning-badge" uk-tooltip="title: Заполните свое CV.; pos: right">!</span>
                     </a>
                 </li>
-                @role('administrator')
+                @level($roleLevels['moderator'])
                      <li>
                          <a href="{{ route('showUserCreateForm') }}" class="nav-item">
                              <i class="icon ion-person-add icon-nav-size"></i>
                               Создать CV
                          </a>
                      </li>
-                @endrole
+                @endlevel
+                @level($roleLevels['employee'])
                 <li><a href="{{ route('showAllUsers') }}" class="nav-item">
                         <i class="icon ion-person-stalker icon-nav-size"></i>
                          Все CV
                     </a>
                 </li>
+                @endlevel
                 <li><a href="#" class="nav-item">
                         <i class="icon ion-settings icon-nav-size"></i>
                          Настройки

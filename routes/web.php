@@ -26,8 +26,16 @@ Route::post('users/store', 'UserController@store')
 
 Route::get('users/show/all', 'UserController@showAll')
     ->name('showAllUsers')
-    ->middleware('auth', 'level:3');
+    ->middleware('auth', 'level:2');
 
 Route::get('users/getDataTableData', 'UserController@getData')
     ->name('users/getDataTableData')
+    ->middleware('auth', 'level:2');
+
+Route::get('users/show/{id}', 'UserController@show')
+    ->name('users/show')
+    ->middleware('auth', 'level:2');
+
+Route::get('users/delete/{id}', 'UserController@delete')
+    ->name('users/delete')
     ->middleware('auth', 'level:3');

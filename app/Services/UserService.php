@@ -74,19 +74,4 @@ class UserService
         return $user;
     }
 
-    public function all()
-    {
-        return $this->userRepository->all();
-    }
-
-    /**
-     * Returns user by id.
-     *
-     * @param int $id
-     * @return mixed
-     */
-    public function find(int $id)
-    {
-        return $this->userRepository->find($id);
-    }
 }

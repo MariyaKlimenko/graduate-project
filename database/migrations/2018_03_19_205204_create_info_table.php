@@ -28,6 +28,7 @@ class CreateInfoTable extends Migration
             $table->string('phone')
                   ->nullable();
 
+
             $table->integer('user_id')
                   ->unsigned()
                   ->nullable()
