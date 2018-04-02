@@ -108,4 +108,24 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+
+    /**
+     * Delete user by id.
+     *
+     * @param $userId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete($userId)
+    {
+        $result = $this->userRepository->delete($userId);
+        if (!$result) {
+            return response()->json([
+                'type' => 'error',
+                'title' => 'Ошибка',
+                'message' => 'Возникла ошибка.'
+            ]);
+        }
+        return response()->json(['responseText' => 'Success!'], 200);
+    }
+
 }

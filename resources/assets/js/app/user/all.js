@@ -10,7 +10,7 @@ export default {
         let moderatorLevel;
         let administratorLevel;
 
-        $('#all-users-datatable').DataTable({
+        let dt = $('#all-users-datatable').DataTable({
             columnDefs: [
                 {
                     "targets": [ 0, 6 ],
@@ -97,10 +97,21 @@ export default {
             UIkit.modal.confirm('Удалить пользователя ' + surname + ' ' + name + '?',
                 {labels: {'ok': 'Да', 'cancel': 'Отмена'},
                 stack: true}).then(function () {
-                    console.log('Confirmed.')
-                }, function () {
-                    console.log('Rejected.')
-                });
+                    $.ajax({
+                        url: "/users/delete/" + id,
+                        type: "get",
+                        success: function(data) {
+                            dt.ajax.reload();
+                            UIkit.modal.alert('Пользователь ' + surname + ' ' + name + ' удален.').then(function () {
+                            });
+                        },
+                        error: function (data) {
+                            UIkit.modal.alert('Не удалось удалить пользователя ' + surname + ' ' + name + '.').then(function () {
+                            });
+                        }
+                    });
+            }, function () {
+            });
         });
 
     },

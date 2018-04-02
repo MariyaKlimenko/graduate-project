@@ -308,7 +308,7 @@ $(function () {
         var moderatorLevel = void 0;
         var administratorLevel = void 0;
 
-        $('#all-users-datatable').DataTable({
+        var dt = $('#all-users-datatable').DataTable({
             columnDefs: [{
                 "targets": [0, 6],
                 "visible": false,
@@ -379,10 +379,18 @@ $(function () {
 
             __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.modal.confirm('Удалить пользователя ' + surname + ' ' + name + '?', { labels: { 'ok': 'Да', 'cancel': 'Отмена' },
                 stack: true }).then(function () {
-                console.log('Confirmed.');
-            }, function () {
-                console.log('Rejected.');
-            });
+                $.ajax({
+                    url: "/users/delete/" + id,
+                    type: "get",
+                    success: function success(data) {
+                        dt.ajax.reload();
+                        __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.modal.alert('Пользователь ' + surname + ' ' + name + ' удален.').then(function () {});
+                    },
+                    error: function error(data) {
+                        __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.modal.alert('Не удалось удалить пользователя ' + surname + ' ' + name + '.').then(function () {});
+                    }
+                });
+            }, function () {});
         });
     },
     init: function init() {

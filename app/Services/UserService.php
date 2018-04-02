@@ -74,4 +74,28 @@ class UserService
         return $user;
     }
 
+    /**
+     * Delete user.
+     *
+     * @param $userId
+     * @return bool|string
+     * @throws Exception
+     * @throws \Throwable
+     */
+    public function delete($userId)
+    {
+        $this->databaseManager->beginTransaction();
+
+        try {
+            $user = $this->userRepository->find($userId);
+
+            throw_unless($user->delete(), new Exception('User is not deleted.'));
+        } catch (Exception $exception) {
+            $this->databaseManager->rollBack();
+            return false;
+        }
+        $this->databaseManager->commit();
+        return 'ok';
+    }
+
 }
