@@ -2,7 +2,7 @@
 $violet: rgb(64, 0, 128);
 $greyblue: rgba(208, 208, 225, 0.8);
 $dark-violet: rgba(13, 0, 26, 0.95);
-$light-green: rgba(242, 255, 230, 0.74);
+$light-green: rgba(0, 255, 0, 0.06);
 $red: rgb(153, 0, 0);
 
 *{
@@ -47,12 +47,20 @@ $red: rgb(153, 0, 0);
 
 .main-block {
   position: absolute;
-  //background-color: $light-green;
   height: 100%;
   right: 0;
   left: 185px !important;
   bottom:0;
   top:0;
+}
+
+.main-heading {
+  background-color: $light-green !important;
+  height: 50px;
+  padding: 30px 30px 30px 30px;
+}
+
+.main-body {
   padding: 30px 30px 30px 30px;
 }
 
@@ -138,7 +146,27 @@ $red: rgb(153, 0, 0);
   cursor: pointer;
 }
 
-
 #all-users-datatable tbody tr:nth-of-type(2n+1) {
-  background-color: rgba(0, 255, 0, 0.06) !important;
+  background-color: $light-green !important;
+}
+
+.show-user-p {
+  color: rgb(51, 51, 51) !important;
+  border-bottom: 1px solid;
+  border-color: rgb(229, 229, 229);
+  width: 490px;
+  padding: 7px 0 8px 10px;
+}
+
+.show-user-label {
+  color: rgb(102, 102, 102) !important;
+}
+
+.datatable-options-column {
+  width: 115px !important;
+}
+
+.heading-role {
+  font-size: 14pt;
+  margin-top: 0;
 }

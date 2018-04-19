@@ -21,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
 
         $roleLevels = $roleRepository->getRoleLevels();
 
-        View::share('roleLevels', $roleLevels);
+        View::share([
+            'roleLevels'    => $roleLevels,
+            ]);
     }
 
     /**

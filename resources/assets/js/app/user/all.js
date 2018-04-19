@@ -11,13 +11,6 @@ export default {
         let administratorLevel;
 
         let dt = $('#all-users-datatable').DataTable({
-            columnDefs: [
-                {
-                    "targets": [ 0, 6 ],
-                    "visible": false,
-                    "searchable": false
-                }
-            ],
             processing: true,
             serverSide: true,
             ajax: {
@@ -30,13 +23,14 @@ export default {
                 }
             },
             columns: [
-                {data: 'id', name: 'id'},
+                {data: 'id', name: 'id', visible: false, searchable: false},
                 {data: 'surname', name: 'surname'},
                 {data: 'name', name: 'name'},
                 {data: 'position', name: 'position'},
                 {data: 'department', name: 'department'},
                 {data: 'updated_at', name: 'updated_at'},
-                {data: 'level', name: 'level'},
+                {data: 'level', name: 'level', visible: false, searchable: false},
+                {data: 'role_name', name: 'role_name'},
                 {data: 'id', name: 'id', render(data, type, row, meta) {
                          let html = '<i class="icon ion-clipboard table-icon-button table-show-button" data-id="' + data + '"></i>' +
                              '<i class="icon ion-archive table-icon-button table-save-button" data-id="' + data + '"></i>';
@@ -66,6 +60,9 @@ export default {
                     next:       next,
                     previous:   prev
                 },
+            },
+            initComplete() {
+                this.api().columns([7]).visible(authLevel == administratorLevel);
             }
         });
 

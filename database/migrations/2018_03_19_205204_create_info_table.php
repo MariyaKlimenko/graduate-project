@@ -16,18 +16,11 @@ class CreateInfoTable extends Migration
         Schema::create('info', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('position')
-                  ->nullable();
-
-            $table->string('department')
-                  ->nullable();
-
             $table->string('location')
                   ->nullable();
 
             $table->string('phone')
                   ->nullable();
-
 
             $table->integer('user_id')
                   ->unsigned()

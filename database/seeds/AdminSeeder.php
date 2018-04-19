@@ -17,12 +17,12 @@ class AdminSeeder extends Seeder
             'name'          => 'admin',
             'surname'       => 'admin',
             'email'         => 'admin@admin.com',
-            'password'      => 'admin1'
+            'password'      => 'admin1',
+            'position'      => 'senior',
+            'department'    => 'admin'
             ];
 
         $infodata = [
-            'position'      => 'senior',
-            'department'    => 'admin',
             'location'      => 'Харьков',
             'phone'         => '10101010'
         ];

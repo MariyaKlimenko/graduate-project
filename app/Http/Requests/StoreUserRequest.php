@@ -30,7 +30,7 @@ class StoreUserRequest extends FormRequest
             'position'      => 'nullable|string|max:255',
             'location'      => 'nullable|string|max:255',
             'department'    => 'nullable|string|max:255',
-            'phone'         => 'nullable|numeric|max:10'
+            'phone'         => 'nullable|regex:/(0)[0-9]{9}/'
         ];
     }
 

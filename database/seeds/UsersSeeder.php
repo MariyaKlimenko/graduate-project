@@ -21,12 +21,12 @@ class UsersSeeder extends Seeder
             'name'          => 'Masha',
             'surname'       => 'Klimenko',
             'email'         => 'mashak@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'Intern',
+            'department'    => 'Web Solutions'
         ];
 
         $infoData = [
-            'position'      => 'intern',
-            'department'    => 'php',
             'location'      => 'Харьков',
             'phone'         => '343535'
         ];
@@ -41,12 +41,13 @@ class UsersSeeder extends Seeder
             'name'          => 'Igor',
             'surname'       => 'Pehov',
             'email'         => 'ipehov@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'Junior Software Developer',
+            'department'    => 'Web Solutions'
         ];
 
         $infoData = [
-            'position'      => 'junior',
-            'department'    => 'php',
+
             'location'      => 'Харьков',
             'phone'         => '1121235'
         ];
@@ -61,11 +62,11 @@ class UsersSeeder extends Seeder
             'name'          => 'Alina',
             'surname'       => 'Fomenko',
             'email'         => 'afomenko@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'Middle Software Developer',
+            'department'    => 'Web Solutions'
         ];
         $infoData = [
-            'position'      => 'middle',
-            'department'    => 'php',
             'location'      => 'Киев',
             'phone'         => '989898'
         ];
@@ -80,11 +81,11 @@ class UsersSeeder extends Seeder
             'name'          => 'John',
             'surname'       => 'Doe',
             'email'         => 'johndoe@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'Senior Software Developer',
+            'department'    => 'Web Solutions'
         ];
         $infoData = [
-            'position'      => 'senior',
-            'department'    => 'javascript',
             'location'      => 'Киев',
             'phone'         => '76767676'
         ];
@@ -99,11 +100,11 @@ class UsersSeeder extends Seeder
             'name'          => 'Jane',
             'surname'       => 'Doe',
             'email'         => 'janedoe@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'senior',
+            'department'    => 'frontend'
         ];
         $infoData = [
-            'position'      => 'senior',
-            'department'    => 'frontend',
             'location'      => 'Львов',
             'phone'         => '545454'
         ];
@@ -118,11 +119,11 @@ class UsersSeeder extends Seeder
             'name'          => 'Osvald',
             'surname'       => 'Cobblepot',
             'email'         => 'penguin@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'senior',
+            'department'    => 'frontend'
         ];
         $infoData = [
-            'position'      => 'senior',
-            'department'    => 'frontend',
             'location'      => 'Харьков',
             'phone'         => '1111111'
         ];
@@ -137,12 +138,12 @@ class UsersSeeder extends Seeder
             'name'          => 'Edward',
             'surname'       => 'Nygma',
             'email'         => 'enigma@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'senior',
+            'department'    => 'riddler'
         ];
 
         $infoData = [
-            'position'      => 'senior',
-            'department'    => 'riddler',
             'location'      => 'Харьков',
             'phone'         => '7777777'
         ];
@@ -157,12 +158,12 @@ class UsersSeeder extends Seeder
             'name'          => 'Jerome',
             'surname'       => 'Valeska',
             'email'         => 'jocker@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'senior',
+            'department'    => 'javascript'
         ];
 
         $infoData = [
-            'position'      => 'senior',
-            'department'    => 'javascript',
             'location'      => 'Киев',
             'phone'         => '66666656'
         ];
@@ -177,12 +178,12 @@ class UsersSeeder extends Seeder
             'name'          => 'Jim',
             'surname'       => 'Gordon',
             'email'         => 'jgordon@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'senior',
+            'department'    => 'java'
         ];
 
         $infoData = [
-            'position'      => 'senior',
-            'department'    => 'java',
             'location'      => 'Киев',
             'phone'         => '900767676'
         ];
@@ -197,12 +198,12 @@ class UsersSeeder extends Seeder
             'name'          => 'Harvey',
             'surname'       => 'Bullock',
             'email'         => 'hbullock@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'senior',
+            'department'    => 'java'
         ];
 
         $infoData = [
-            'position'      => 'senior',
-            'department'    => 'java',
             'location'      => 'Киев',
             'phone'         => '43437676'
         ];
@@ -216,12 +217,12 @@ class UsersSeeder extends Seeder
             'name'          => 'Evy',
             'surname'       => 'Pepper',
             'email'         => 'poisonevy@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'junior',
+            'department'    => 'frontend'
         ];
 
         $infoData = [
-            'position'      => 'junior',
-            'department'    => 'frontend',
             'location'      => 'Львов',
             'phone'         => '656565'
         ];
@@ -235,12 +236,12 @@ class UsersSeeder extends Seeder
             'name'          => 'Selina',
             'surname'       => 'Kyle',
             'email'         => 'cat@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'junior',
+            'department'    => 'javascript'
         ];
 
         $infoData = [
-            'position'      => 'junior',
-            'department'    => 'javascript',
             'location'      => 'Киев',
             'phone'         => '7999999'
         ];
@@ -254,12 +255,12 @@ class UsersSeeder extends Seeder
             'name'          => 'Bruce',
             'surname'       => 'Wayne',
             'email'         => 'batman@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'junior',
+            'department'    => 'php'
         ];
 
         $infoData = [
-            'position'      => 'junior',
-            'department'    => 'php',
             'location'      => 'Киев',
             'phone'         => '333333'
         ];
@@ -274,12 +275,12 @@ class UsersSeeder extends Seeder
             'name'          => 'Lee',
             'surname'       => 'Tompkins',
             'email'         => 'lesly@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'senior',
+            'department'    => 'javascript'
         ];
 
         $infoData = [
-            'position'      => 'senior',
-            'department'    => 'javascript',
             'location'      => 'Киев',
             'phone'         => '77777676'
         ];
@@ -294,12 +295,12 @@ class UsersSeeder extends Seeder
             'name'          => 'Butch',
             'surname'       => 'Geelzean',
             'email'         => 'butch@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'senior',
+            'department'    => 'c sharp'
         ];
 
         $infoData = [
-            'position'      => 'senior',
-            'department'    => 'c sharp',
             'location'      => 'Киев',
             'phone'         => '454545'
         ];
@@ -314,12 +315,12 @@ class UsersSeeder extends Seeder
             'name'          => 'Barbara',
             'surname'       => 'Keen',
             'email'         => 'barbara@email.com',
-            'password'      => '111111'
+            'password'      => '111111',
+            'position'      => 'senior',
+            'department'    => 'HR'
         ];
 
         $infoData = [
-            'position'      => 'senior',
-            'department'    => 'HR',
             'location'      => 'Киев',
             'phone'         => '76543369'
         ];

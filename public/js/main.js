@@ -227,181 +227,7 @@ module.exports = __webpack_require__(40);
 
 /***/ }),
 
-/***/ 40:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_js__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_user_js__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_all_js__ = __webpack_require__(43);
-
-
-
-
-$(function () {
-    __WEBPACK_IMPORTED_MODULE_0__app_js__["a" /* default */].init();
-    __WEBPACK_IMPORTED_MODULE_1__user_user_js__["a" /* default */].init();
-    __WEBPACK_IMPORTED_MODULE_2__user_all_js__["a" /* default */].init();
-});
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
-
-/***/ }),
-
-/***/ 41:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {
-/* harmony default export */ __webpack_exports__["a"] = ({
-    bindEvents: function bindEvents() {
-        var body = $('body');
-
-        body.on('click', '#logout-button', function () {
-            $('#logout-form').submit();
-        });
-    },
-    init: function init() {
-        this.bindEvents();
-    }
-});
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
-
-/***/ }),
-
-/***/ 42:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {
-/* harmony default export */ __webpack_exports__["a"] = ({
-    bindEvents: function bindEvents() {
-        var body = $('body');
-
-        body.on('click', '#submit-create-user-button', function () {
-            $('#create-user-form').submit();
-        });
-    },
-    init: function init() {
-        this.bindEvents();
-    }
-});
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
-
-/***/ }),
-
-/***/ 43:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uikit_min_js__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__uikit_min_js__);
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    bindEvents: function bindEvents() {
-        var body = $('body');
-
-        var prev = $.parseHTML('<i class="icon ion-chevron-left pagination-arrows"></i>');
-        var next = $.parseHTML('<i class="icon ion-chevron-right pagination-arrows"></i>');
-        var authLevel = void 0;
-        var moderatorLevel = void 0;
-        var administratorLevel = void 0;
-
-        var dt = $('#all-users-datatable').DataTable({
-            columnDefs: [{
-                "targets": [0, 6],
-                "visible": false,
-                "searchable": false
-            }],
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: '/users/getDataTableData',
-                dataSrc: function dataSrc(json) {
-                    authLevel = json.authLevel;
-                    moderatorLevel = json.moderatorLevel;
-                    administratorLevel = json.administratorLevel;
-                    return json.data;
-                }
-            },
-            columns: [{ data: 'id', name: 'id' }, { data: 'surname', name: 'surname' }, { data: 'name', name: 'name' }, { data: 'position', name: 'position' }, { data: 'department', name: 'department' }, { data: 'updated_at', name: 'updated_at' }, { data: 'level', name: 'level' }, { data: 'id', name: 'id', render: function render(data, type, row, meta) {
-                    var html = '<i class="icon ion-clipboard table-icon-button table-show-button" data-id="' + data + '"></i>' + '<i class="icon ion-archive table-icon-button table-save-button" data-id="' + data + '"></i>';
-                    if (authLevel > row.level && authLevel >= moderatorLevel) {
-                        html += '<i class="icon ion-compose table-icon-button table-edit-button" data-id="' + data + '"></i>' + '<i class="icon ion-trash-b table-icon-button table-delete-button" data-id="' + data + '"' + ' data-surname="' + row.surname + '" data-name="' + row.name + '"></i>';
-                    }
-                    return html;
-                }
-            }],
-            language: {
-                search: 'Поиск: ',
-                lengthMenu: 'Показать _MENU_ ',
-                processing: 'Обработка...',
-                emptyTable: 'Нет данных',
-                info: 'Показано с _START_ по _END_ из _TOTAL_ записей',
-                infoEmpty: 'Показано с 0 по 0 из 0 записей',
-                infoFiltered: '(выбрано из _MAX_ записей)',
-                infoPostFix: '',
-                thousands: ',',
-                loadingRecords: 'Загрузка...',
-                zeroRecords: 'Поданному запросу ничего не найдено',
-                paginate: {
-                    first: 'Первая',
-                    last: 'Последняя',
-                    next: next,
-                    previous: prev
-                }
-            }
-        });
-
-        $('#all-users-datatable_length :input').addClass('uk-select all-users-datatable-select');
-
-        $('#all-users-datatable_filter input').addClass('uk-input all-users-datatable-input');
-
-        $('#all-users-datatable_previous a').addClass('datatable-pagination');
-
-        $('#all-users-datatable_paginate').addClass('all-users-datatable-block');
-
-        body.on('click', '.table-show-button', function () {
-            window.location = "/users/show/" + $(this).data('id');
-        });
-
-        body.on('click', '.table-save-button', function () {});
-
-        body.on('click', '.table-edit-button', function () {});
-
-        body.on('click', '.table-delete-button', function (e) {
-            var surname = $(this).data('surname');
-            var name = $(this).data('name');
-            var id = $(this).data('id');
-            e.preventDefault();
-            e.target.blur();
-
-            __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.modal.confirm('Удалить пользователя ' + surname + ' ' + name + '?', { labels: { 'ok': 'Да', 'cancel': 'Отмена' },
-                stack: true }).then(function () {
-                $.ajax({
-                    url: "/users/delete/" + id,
-                    type: "get",
-                    success: function success(data) {
-                        dt.ajax.reload();
-                        __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.modal.alert('Пользователь ' + surname + ' ' + name + ' удален.').then(function () {});
-                    },
-                    error: function error(data) {
-                        __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.modal.alert('Не удалось удалить пользователя ' + surname + ' ' + name + '.').then(function () {});
-                    }
-                });
-            }, function () {});
-        });
-    },
-    init: function init() {
-        this.bindEvents();
-    }
-});
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
-
-/***/ }),
-
-/***/ 5:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -3351,6 +3177,238 @@ $(function () {
   }(Oi), Oi;
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6).setImmediate))
+
+/***/ }),
+
+/***/ 40:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_js__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_create_js__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_update_js__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_all_js__ = __webpack_require__(44);
+
+
+
+
+
+$(function () {
+    __WEBPACK_IMPORTED_MODULE_0__app_js__["a" /* default */].init();
+    __WEBPACK_IMPORTED_MODULE_1__user_create_js__["a" /* default */].init();
+    __WEBPACK_IMPORTED_MODULE_3__user_all_js__["a" /* default */].init();
+    __WEBPACK_IMPORTED_MODULE_2__user_update_js__["a" /* default */].init();
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 41:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {
+/* harmony default export */ __webpack_exports__["a"] = ({
+    bindEvents: function bindEvents() {
+        var body = $('body');
+
+        body.on('click', '#logout-button', function () {
+            $('#logout-form').submit();
+        });
+    },
+    init: function init() {
+        this.bindEvents();
+    }
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 42:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {
+/* harmony default export */ __webpack_exports__["a"] = ({
+    bindEvents: function bindEvents() {
+        var body = $('body');
+
+        body.on('click', '#submit-create-user-button', function () {
+            $('#create-user-form').submit();
+        });
+    },
+    init: function init() {
+        this.bindEvents();
+    }
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 43:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uikit_min__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uikit_min___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__uikit_min__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    bindEvents: function bindEvents() {
+        var body = $('body');
+
+        if (localStorage.getItem('status')) {
+            __WEBPACK_IMPORTED_MODULE_0__uikit_min___default.a.notification({ message: 'Изменения сохранены.', status: 'success', pos: 'top-right' });
+            localStorage.clear();
+        }
+
+        body.on('click', '.update-general-info-button', function () {
+
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: '/users/getUpdateGeneralInfoPartial/' + id,
+                type: "get",
+                success: function success(data) {
+                    $('#general-info').html(data);
+                }
+            });
+        });
+
+        body.on('click', '#submit-update-user-button', function () {
+
+            var data = $('#update-general-info-user-form').serializeArray();
+
+            $.ajax({
+                url: "/users/updateGeneralInfo",
+                type: "POST",
+                data: data,
+                success: function success(response) {
+                    localStorage.setItem('status', 'saved');
+                    location.reload();
+                }
+            });
+        });
+
+        body.on('click', '#cancel-update-user-button', function () {
+            location.reload();
+        });
+    },
+    init: function init() {
+        this.bindEvents();
+    }
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 44:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uikit_min_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__uikit_min_js__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    bindEvents: function bindEvents() {
+        var body = $('body');
+
+        var prev = $.parseHTML('<i class="icon ion-chevron-left pagination-arrows"></i>');
+        var next = $.parseHTML('<i class="icon ion-chevron-right pagination-arrows"></i>');
+        var authLevel = void 0;
+        var moderatorLevel = void 0;
+        var administratorLevel = void 0;
+
+        var dt = $('#all-users-datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '/users/getDataTableData',
+                dataSrc: function dataSrc(json) {
+                    authLevel = json.authLevel;
+                    moderatorLevel = json.moderatorLevel;
+                    administratorLevel = json.administratorLevel;
+                    return json.data;
+                }
+            },
+            columns: [{ data: 'id', name: 'id', visible: false, searchable: false }, { data: 'surname', name: 'surname' }, { data: 'name', name: 'name' }, { data: 'position', name: 'position' }, { data: 'department', name: 'department' }, { data: 'updated_at', name: 'updated_at' }, { data: 'level', name: 'level', visible: false, searchable: false }, { data: 'role_name', name: 'role_name' }, { data: 'id', name: 'id', render: function render(data, type, row, meta) {
+                    var html = '<i class="icon ion-clipboard table-icon-button table-show-button" data-id="' + data + '"></i>' + '<i class="icon ion-archive table-icon-button table-save-button" data-id="' + data + '"></i>';
+                    if (authLevel > row.level && authLevel >= moderatorLevel) {
+                        html += '<i class="icon ion-compose table-icon-button table-edit-button" data-id="' + data + '"></i>' + '<i class="icon ion-trash-b table-icon-button table-delete-button" data-id="' + data + '"' + ' data-surname="' + row.surname + '" data-name="' + row.name + '"></i>';
+                    }
+                    return html;
+                }
+            }],
+            language: {
+                search: 'Поиск: ',
+                lengthMenu: 'Показать _MENU_ ',
+                processing: 'Обработка...',
+                emptyTable: 'Нет данных',
+                info: 'Показано с _START_ по _END_ из _TOTAL_ записей',
+                infoEmpty: 'Показано с 0 по 0 из 0 записей',
+                infoFiltered: '(выбрано из _MAX_ записей)',
+                infoPostFix: '',
+                thousands: ',',
+                loadingRecords: 'Загрузка...',
+                zeroRecords: 'Поданному запросу ничего не найдено',
+                paginate: {
+                    first: 'Первая',
+                    last: 'Последняя',
+                    next: next,
+                    previous: prev
+                }
+            },
+            initComplete: function initComplete() {
+                this.api().columns([7]).visible(authLevel == administratorLevel);
+            }
+        });
+
+        $('#all-users-datatable_length :input').addClass('uk-select all-users-datatable-select');
+
+        $('#all-users-datatable_filter input').addClass('uk-input all-users-datatable-input');
+
+        $('#all-users-datatable_previous a').addClass('datatable-pagination');
+
+        $('#all-users-datatable_paginate').addClass('all-users-datatable-block');
+
+        body.on('click', '.table-show-button', function () {
+            window.location = "/users/show/" + $(this).data('id');
+        });
+
+        body.on('click', '.table-save-button', function () {});
+
+        body.on('click', '.table-edit-button', function () {});
+
+        body.on('click', '.table-delete-button', function (e) {
+            var surname = $(this).data('surname');
+            var name = $(this).data('name');
+            var id = $(this).data('id');
+            e.preventDefault();
+            e.target.blur();
+
+            __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.modal.confirm('Удалить пользователя ' + surname + ' ' + name + '?', { labels: { 'ok': 'Да', 'cancel': 'Отмена' },
+                stack: true }).then(function () {
+                $.ajax({
+                    url: "/users/delete/" + id,
+                    type: "get",
+                    success: function success(data) {
+                        dt.ajax.reload();
+                        __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.modal.alert('Пользователь ' + surname + ' ' + name + ' удален.').then(function () {});
+                    },
+                    error: function error(data) {
+                        __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.modal.alert('Не удалось удалить пользователя ' + surname + ' ' + name + '.').then(function () {});
+                    }
+                });
+            }, function () {});
+        });
+    },
+    init: function init() {
+        this.bindEvents();
+    }
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 

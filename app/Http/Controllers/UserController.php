@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
@@ -53,7 +54,31 @@ class UserController extends Controller
             ]);
         }
 
-        return $user;
+        return redirect(route('users/show', ['id' => $user->id]));
+    }
+
+    /**
+     * Updates user's general info.
+     *
+     * @param UpdateUserRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function update(UpdateUserRequest $request)
+    {
+        $data = $request->all();
+        $user = $this->userService->update($data);
+        if (!$user) {
+            return response()->json([
+                'type' => 'error',
+                'title' => 'Ошибка',
+                'message' => 'Возникла ошибка.'
+            ]);
+        }
+        return response()->json([
+            'user' => $user
+        ]);
     }
 
     /**
@@ -66,7 +91,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show view with table of all users.
+     * Shows view with table of all users.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -95,7 +120,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show user's CV.
+     * Shows user's CV.
      *
      * @param $userId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -105,12 +130,15 @@ class UserController extends Controller
         $user = $this->userRepository->find($userId);
 
         return view('user.show', [
-            'user' => $user
+            'user'      => $user,
+            'userRoleName'  => trans('roles.' . $user->roles->first()->name),
+            'userRoleLevel' => $user->roles->first()->level,
+            'authUserRole' => auth()->user()->roles->first()
         ]);
     }
 
     /**
-     * Delete user by id.
+     * Deletes user by id.
      *
      * @param $userId
      * @return \Illuminate\Http\JsonResponse
@@ -128,4 +156,19 @@ class UserController extends Controller
         return response()->json(['responseText' => 'Success!'], 200);
     }
 
+    /**
+     * Returns partial for updating of User.
+     *
+     * @param $id
+     * @return string
+     * @throws \Throwable
+     */
+    public function getUpdateGeneralInfoPartial($id)
+    {
+        $user = $this->userRepository->find($id);
+
+        return view('user.partials.general-info-update')
+            ->with(['user' => $user])
+            ->render();
+    }
 }

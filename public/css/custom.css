@@ -48,6 +48,15 @@
   left: 185px !important;
   bottom: 0;
   top: 0;
+}
+
+.main-heading {
+  background-color: rgba(0, 255, 0, 0.06) !important;
+  height: 50px;
+  padding: 30px 30px 30px 30px;
+}
+
+.main-body {
   padding: 30px 30px 30px 30px;
 }
 
@@ -139,5 +148,26 @@
 
 #all-users-datatable tbody tr:nth-of-type(2n+1) {
   background-color: rgba(0, 255, 0, 0.06) !important;
+}
+
+.show-user-p {
+  color: #333333 !important;
+  border-bottom: 1px solid;
+  border-color: #e5e5e5;
+  width: 490px;
+  padding: 7px 0 8px 10px;
+}
+
+.show-user-label {
+  color: #666666 !important;
+}
+
+.datatable-options-column {
+  width: 115px !important;
+}
+
+.heading-role {
+  font-size: 14pt;
+  margin-top: 0;
 }
 

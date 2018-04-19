@@ -36,13 +36,18 @@ class UserRepository extends Repository
                 'users.id',
                 'users.name',
                 'users.surname',
-                'info.position',
-                'info.department',
+                'users.position',
+                'users.department',
                 'info.location',
                 'info.updated_at',
-                'roles.level'
+                'roles.level',
+                'roles.name as role_name'
             )->get();
 
-        return $users;
+        return $users->each(function ($user) {
+            $role = trans('roles.' . $user->role_name);
+
+            $user->role_name = $role;
+        });
     }
 }
