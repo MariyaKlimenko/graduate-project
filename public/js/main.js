@@ -3234,8 +3234,56 @@ $(function () {
     bindEvents: function bindEvents() {
         var body = $('body');
 
+        var educationIndex = 0;
+        var divider = '<hr class="uk-divider-icon">\n';
+
+        var today = new Date();
+        var maxYear = today.getFullYear();
+        var minYear = maxYear - 35;
+        var educationYear = void 0;
+
+        function setEducationYearOptions() {
+            for (var i = maxYear; i >= minYear; i--) {
+                educationYear += '<option value="' + i + '">' + i + '</option>';
+            }
+
+            $('.education-year-select').append(educationYear);
+        }
+
+        body.on('click', '.delete-education-item-button', function () {
+            var block = $(this).parents('div.education-item-form');
+
+            if (block.prev('hr').length > 0) {
+                block.prev('hr').remove();
+            } else {
+                if (block.next('hr').length > 0) {
+                    block.next('hr').remove();
+                }
+            }
+            block.remove();
+        });
+
         body.on('click', '#submit-create-user-button', function () {
             $('#create-user-form').submit();
+        });
+
+        body.on('click', '#add-education-item-button', function () {
+            educationIndex++;
+
+            var edicationField = $('#education-field');
+
+            $.ajax({
+                url: '/users/getAddEducationItemPartial/' + educationIndex,
+                type: "get",
+                success: function success(data) {
+                    if (!edicationField.is(':empty')) {
+                        edicationField.append(divider);
+                    }
+
+                    edicationField.append(data);
+                    setEducationYearOptions();
+                }
+            });
         });
     },
     init: function init() {

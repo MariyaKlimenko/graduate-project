@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Education;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\User;
@@ -34,6 +35,7 @@ class AdminSeeder extends Seeder
         $admin->attachRole($adminRole);
 
         $info = $admin->info()->firstOrNew([]);
+
         $info->fill($infodata);
         $info->save();
     }

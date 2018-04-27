@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
+use App\Repositories\EducationRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use App\Services\UserService;
@@ -28,6 +29,7 @@ class UserController extends Controller
         UserRepository $userRepository,
         RoleRepository $roleRepository
     ) {
+
         $this->userService = $userService;
         $this->userRepository = $userRepository;
         $this->roleRepository = $roleRepository;
@@ -53,7 +55,6 @@ class UserController extends Controller
                 'message' => 'Возникла ошибка.'
             ]);
         }
-
         return redirect(route('users/show', ['id' => $user->id]));
     }
 
@@ -156,19 +157,4 @@ class UserController extends Controller
         return response()->json(['responseText' => 'Success!'], 200);
     }
 
-    /**
-     * Returns partial for updating of User.
-     *
-     * @param $id
-     * @return string
-     * @throws \Throwable
-     */
-    public function getUpdateGeneralInfoPartial($id)
-    {
-        $user = $this->userRepository->find($id);
-
-        return view('user.partials.general-info-update')
-            ->with(['user' => $user])
-            ->render();
-    }
 }

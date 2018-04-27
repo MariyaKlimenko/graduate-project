@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Education;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,5 +48,9 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
         return $this->hasOne(Info::class);
     }
 
+    public function education()
+    {
+        return $this->hasMany(Education::class);
+    }
 
 }

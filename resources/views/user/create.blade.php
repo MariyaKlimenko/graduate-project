@@ -10,12 +10,13 @@
             {{-- column left --}}
                 <div>
                     <div class="uk-margin">
-                        <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">
+                        <label class="uk-form-label">
                             Имя
                             <span class="uk-text-danger uk-text-bold" uk-tooltip="Обязательное поле для заполнения.">*</span>
                         </label>
                         <div class="uk-inline">
-                            <input class="uk-input uk-form-width-large" name="name" placeholder="Имя" type="text" value="{{ old('name') }}" required autofocus>
+                            <input class="uk-input uk-form-width-large" name="name" placeholder="Имя"
+                                   type="text" value="{{ old('name') }}" required autofocus />
                         </div>
                         @if ($errors->has('name'))
                             <br>
@@ -25,12 +26,13 @@
                         @endif
                     </div>
                     <div class="uk-margin">
-                        <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">
+                        <label class="uk-form-label">
                             Фамилия
                             <span class="uk-text-danger uk-text-bold" uk-tooltip="Обязательное поле для заполнения.">*</span>
                         </label>
                         <div class="uk-inline">
-                            <input class="uk-input uk-form-width-large" name="surname" placeholder="Фамилия" type="text" value="{{ old('surname') }}" required autofocus>
+                            <input class="uk-input uk-form-width-large" name="surname" placeholder="Фамилия"
+                                   type="text" value="{{ old('surname') }}" required autofocus>
                         </div>
                         @if ($errors->has('surname'))
                             <br>
@@ -40,12 +42,13 @@
                         @endif
                     </div>
                     <div class="uk-margin">
-                        <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">
+                        <label class="uk-form-label">
                             Электронный адрес
                             <span class="uk-text-danger uk-text-bold" uk-tooltip="Обязательное поле для заполнения.">*</span>
                         </label>
                         <div class="uk-inline">
-                            <input class="uk-input uk-form-width-large" name="email" placeholder="Эл. адресс" type="email" value="{{ old('email') }}" required autofocus>
+                            <input class="uk-input uk-form-width-large" name="email" placeholder="Эл. адресс"
+                                   type="email" value="{{ old('email') }}" required autofocus>
                         </div>
                         @if ($errors->has('email'))
                             <br>
@@ -55,7 +58,7 @@
                         @endif
                     </div>
                     <div class="uk-margin">
-                        <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">
+                        <label class="uk-form-label">
                             Роль
                             <span class="uk-text-danger uk-text-bold" uk-tooltip="Обязательное поле для заполнения.">*</span>
                         </label>
@@ -71,9 +74,10 @@
                 {{-- column right --}}
                 <div>
                     <div class="uk-margin">
-                        <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">Позиция</label>
+                        <label class="uk-form-label" >Позиция</label>
                         <div class="uk-inline">
-                            <input class="uk-input uk-form-width-large" name="position" placeholder="Позиция" type="text" value="{{ old('position') }}" autofocus>
+                            <input class="uk-input uk-form-width-large" name="position"
+                                   placeholder="Позиция" type="text" value="{{ old('position') }}" autofocus>
                         </div>
                         @if ($errors->has('position'))
                             <br>
@@ -83,9 +87,10 @@
                         @endif
                     </div>
                     <div class="uk-margin">
-                        <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">Отдел</label>
+                        <label class="uk-form-label">Отдел</label>
                         <div class="uk-inline">
-                            <input class="uk-input uk-form-width-large" name="department" placeholder="Отдел" type="text" value="{{ old('department') }}" autofocus>
+                            <input class="uk-input uk-form-width-large" name="department"
+                                   placeholder="Отдел" type="text" value="{{ old('department') }}" autofocus>
                         </div>
                         @if ($errors->has('department'))
                             <br>
@@ -95,9 +100,10 @@
                         @endif
                     </div>
                     <div class="uk-margin">
-                        <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">Местоположение</label>
+                        <label class="uk-form-label">Местоположение</label>
                         <div class="uk-inline">
-                            <input class="uk-input uk-form-width-large" name="location" placeholder="Местоположение" type="text" value="{{ old('location') }}" autofocus>
+                            <input class="uk-input uk-form-width-large" name="location"
+                                   placeholder="Местоположение" type="text" value="{{ old('location') }}" autofocus>
                         </div>
                         @if ($errors->has('location'))
                             <br>
@@ -107,9 +113,10 @@
                         @endif
                     </div>
                     <div class="uk-margin">
-                        <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">Моб. телефон</label>
+                        <label class="uk-form-label">Моб. телефон</label>
                         <div class="uk-inline">
-                            <input class="uk-input uk-form-width-large" name="phone" placeholder="Номер телефона" type="text" value="{{ old('phone') }}" autofocus>
+                            <input class="uk-input uk-form-width-large" name="phone" placeholder="Номер телефона"
+                                   type="text" value="{{ old('phone') }}" autofocus>
                         </div>
                         @if ($errors->has('phone'))
                             <br>
@@ -123,11 +130,21 @@
 
             {{ csrf_field() }}
             </div>
+
+            <div>
+                <h3 class="unit-heading">Образование</h3>
+                <div id="education-field"></div>
+                <button type="button" id="add-education-item-button"
+                        class="uk-button uk-button-primary add-item-button">
+                   <span class="add-item-icon">+</span>
+                </button>
+            </div>
         </form>
 
        <div class="create-user-buttons">
            <a class="uk-button uk-button-default create-user-button" href="{{ route('home') }}">Отмена</a>
-           <button class="uk-button uk-button-primary create-user-button" id="submit-create-user-button"> Создать</button>
+           <button class="uk-button uk-button-primary create-user-button"
+                   id="submit-create-user-button"> Создать</button>
        </div>
     </div>
 @endsection

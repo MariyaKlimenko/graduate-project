@@ -12,6 +12,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Models\Info;
 use App\Models\Role;
 use App\Models\User;
+use App\Repositories\EducationRepository;
 use App\Repositories\InfoRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Database\DatabaseManager;
@@ -22,6 +23,8 @@ class UserService
     protected $databaseManager;
     protected $userRepository;
     protected $infoRepository;
+    protected $educationRepository;
+
 
     /**
      * UserService constructor.
@@ -32,11 +35,13 @@ class UserService
     public function __construct(
         DatabaseManager $databaseManager,
         UserRepository $userRepository,
-        InfoRepository $infoRepository
+        InfoRepository $infoRepository,
+        EducationRepository $educationRepository
     ) {
         $this->databaseManager = $databaseManager;
         $this->userRepository = $userRepository;
         $this->infoRepository = $infoRepository;
+        $this->educationRepository = $educationRepository;
     }
 
     /**
@@ -65,6 +70,13 @@ class UserService
             throw_unless($role, new Exception());
 
             $user->attachRole($role);
+
+            $education = $this->educationRepository->store($data);
+
+            foreach ($education as $item) {
+                throw_unless($user->education()->save($item), new Exception('Education was not stored'));
+            }
+
 
         } catch (Exception $exception) {
             $this->databaseManager->rollBack();
@@ -96,6 +108,8 @@ class UserService
             $user->info->fill($data);
 
             throw_unless($user->push(), new Exception('Profile was not stored'));
+
+
 
         } catch (Exception $exception) {
             $this->databaseManager->rollBack();
