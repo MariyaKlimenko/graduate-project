@@ -31,6 +31,7 @@ class UserService
      * @param DatabaseManager $databaseManager
      * @param UserRepository $userRepository
      * @param InfoRepository $infoRepository
+     * @param EducationRepository $educationRepository
      */
     public function __construct(
         DatabaseManager $databaseManager,
@@ -65,18 +66,22 @@ class UserService
 
             throw_unless($info->save(), new Exception('Profile was not stored'));
 
+
             $role = Role::where('name', $data['role'])->first();
 
             throw_unless($role, new Exception());
 
             $user->attachRole($role);
 
-            $education = $this->educationRepository->store($data);
-
-            foreach ($education as $item) {
-                throw_unless($user->education()->save($item), new Exception('Education was not stored'));
+            if (isset($data['education'])) {
+                foreach ($data['education'] as $item) {
+                    $education = $this->educationRepository->store($item);
+                    throw_unless(
+                        $user->education()->save($education),
+                        new Exception('Education was not stored')
+                    );
+                }
             }
-
 
         } catch (Exception $exception) {
             $this->databaseManager->rollBack();

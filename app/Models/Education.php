@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Education extends Model
 {
-    const IS_NOT_FINISHED = 'is-not-finished';
-
     protected $fillable = [
         'country_id',
         'university',
@@ -15,18 +13,28 @@ class Education extends Model
         'degree',
         'started_at',
         'finished_at',
-        'is_finished'
+        'is_not_finished'
     ];
 
     public $timestamps = false;
 
+    /**
+     * Returns country, which is belonged to education.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function country()
     {
-        return $this->hasOne(Country::class);
+        return $this->hasOne(Country::class, 'id', 'country_id');
     }
 
+    /**
+     * Returns user, which education is belonged to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
-        return $this->belongsToOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }

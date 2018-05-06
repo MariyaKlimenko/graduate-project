@@ -34,8 +34,12 @@ class UpdateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Имя должно быть заполнено.',
-            'surname.required' => 'Имя должно быть заполнено.',
+            'name.required'     => 'Имя должно быть заполнено.',
+            'surname.required'  => 'Фамилия должна быть заполнена.',
+            'name.max'          => 'Имя не должно быть длиннее 255 символов.',
+            'surname.max'       => 'Фамилия не должна быть длиннее 255 символов.',
+            'position.max'      => 'Позиция не должна быть длиннее 255 символов.',
+            'department.max'    => 'Отдел не должен быть длиннее 255 символов.'
         ];
     }
 }

@@ -55,7 +55,10 @@ class UserController extends Controller
                 'message' => 'Возникла ошибка.'
             ]);
         }
-        return redirect(route('users/show', ['id' => $user->id]));
+
+        return response()->json([
+            'user' => $user
+        ]);
     }
 
     /**

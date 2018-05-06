@@ -5,7 +5,7 @@
         <h2 >Создать нового пользователя</h2>
     </div>
     <div class="main-body">
-        <form method="POST" action="{{ route('storeUser') }}" id="create-user-form" class="uk-form-stacked">
+        <form method="POST" action="" id="create-user-form" class="uk-form-stacked">
             <div class="uk-child-width-1-2" uk-grid>
             {{-- column left --}}
                 <div>
@@ -141,7 +141,9 @@
             </div>
         </form>
 
-       <div class="create-user-buttons">
+        <ul class="uk-list create-user-errors"></ul>
+
+        <div class="create-user-buttons">
            <a class="uk-button uk-button-default create-user-button" href="{{ route('home') }}">Отмена</a>
            <button class="uk-button uk-button-primary create-user-button"
                    id="submit-create-user-button"> Создать</button>

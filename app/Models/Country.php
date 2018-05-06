@@ -16,7 +16,7 @@ class Country extends Model
 
     public function education()
     {
-        return $this->belongsTo(Education::class);
+        return $this->belongsToMany(Education::class);
     }
 
 }

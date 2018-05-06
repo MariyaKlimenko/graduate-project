@@ -151,11 +151,17 @@ $red: rgb(153, 0, 0);
 }
 
 .show-user-p {
+  height: 17px !important;
   color: rgb(51, 51, 51) !important;
   border-bottom: 1px solid;
-  border-color: rgb(229, 229, 229);
-  width: 490px;
+  border-color: rgba(229, 229, 229, 0.38);
+  width: 470px;
   padding: 7px 0 8px 10px;
+}
+
+.show-user-p-3 {
+  @extend .show-user-p;
+  width: 300px;
 }
 
 .show-user-label {
@@ -183,6 +189,16 @@ $red: rgb(153, 0, 0);
 }
 
 .education-is-not-finished-label {
-  font-size: 12pt;
+  font-size: 13pt;
   line-height: 40px;
+}
+
+.show-user-section {
+  margin-left: 5px;
+}
+
+.show-user-updated-at {
+  text-align: right;
+  margin-top: 40px;
+  color: rgb(147, 147, 147);
 }

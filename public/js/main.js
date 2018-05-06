@@ -3242,6 +3242,9 @@ $(function () {
         var minYear = maxYear - 35;
         var educationYear = void 0;
 
+        /**
+         * Sets education's year range into select options.
+         */
         function setEducationYearOptions() {
             for (var i = maxYear; i >= minYear; i--) {
                 educationYear += '<option value="' + i + '">' + i + '</option>';
@@ -3250,6 +3253,9 @@ $(function () {
             $('.education-year-select').append(educationYear);
         }
 
+        /**
+         * Ajax request for deleting user.
+         */
         body.on('click', '.delete-education-item-button', function () {
             var block = $(this).parents('div.education-item-form');
 
@@ -3263,10 +3269,22 @@ $(function () {
             block.remove();
         });
 
-        body.on('click', '#submit-create-user-button', function () {
-            $('#create-user-form').submit();
+        /**
+         * Enable/disable select item for finished-at year.
+         */
+        body.on('change', '.education-is-not-finished-checkbox', function () {
+            var input = $('#education-finished-at-input-' + $(this).data('index'));
+            if ($(this).prop('checked')) {
+                input.prop('disabled', true);
+            } else {
+                input.prop('disabled', false);
+            }
         });
 
+        /**
+         * Ajax request for getting new education form view partial
+         * and setting it to main form.
+         */
         body.on('click', '#add-education-item-button', function () {
             educationIndex++;
 
@@ -3282,6 +3300,38 @@ $(function () {
 
                     edicationField.append(data);
                     setEducationYearOptions();
+                }
+            });
+        });
+
+        /**
+         * Ajax request for storing new user
+         * and hsndling errors of validation.
+         */
+        body.on('click', '#submit-create-user-button', function () {
+
+            $.each($('form#create-user-form :input'), function () {
+                $(this).removeClass('uk-form-danger');
+            });
+
+            var errors = $('.create-user-errors');
+
+            errors.text("");
+
+            var data = $('#create-user-form').serializeArray();
+
+            $.ajax({
+                url: "/users/store",
+                type: "POST",
+                data: data,
+                success: function success(response) {
+                    window.location.replace('/users/show/' + response.user.id);
+                },
+                error: function error(response) {
+                    $.each(response.responseJSON.errors, function (key, val) {
+                        errors.append('<li class="uk-text-danger">' + '<i class="icon ion-alert uk-text-danger"></i> ' + val + '</li>');
+                        $("input[name='" + key + "']").addClass('uk-form-danger');
+                    });
                 }
             });
         });
@@ -3306,11 +3356,17 @@ $(function () {
     bindEvents: function bindEvents() {
         var body = $('body');
 
+        /**
+         * Show notification.
+         */
         if (localStorage.getItem('status')) {
             __WEBPACK_IMPORTED_MODULE_0__uikit_min___default.a.notification({ message: 'Изменения сохранены.', status: 'success', pos: 'top-right' });
             localStorage.clear();
         }
 
+        /**
+         * Ajax request for getting user's general info form partial for updating it.
+         */
         body.on('click', '.update-general-info-button', function () {
 
             var id = $(this).data('id');
@@ -3324,7 +3380,19 @@ $(function () {
             });
         });
 
+        /**
+         * Ajax request for updating user's general info
+         * and handling errors.
+         */
         body.on('click', '#submit-update-user-button', function () {
+
+            $.each($('form#update-general-info-user-form :input'), function () {
+                $(this).removeClass('uk-form-danger');
+            });
+
+            var errors = $('.update-general-info-errors');
+
+            errors.text("");
 
             var data = $('#update-general-info-user-form').serializeArray();
 
@@ -3335,10 +3403,19 @@ $(function () {
                 success: function success(response) {
                     localStorage.setItem('status', 'saved');
                     location.reload();
+                },
+                error: function error(response) {
+                    $.each(response.responseJSON.errors, function (key, val) {
+                        errors.append('<li class="uk-text-danger">' + '<i class="icon ion-alert uk-text-danger"></i> ' + val + '</li>');
+                        $("input[name='" + key + "']").addClass('uk-form-danger');
+                    });
                 }
             });
         });
 
+        /**
+         * Cancel updating of user's general info.
+         */
         body.on('click', '#cancel-update-user-button', function () {
             location.reload();
         });
@@ -3443,7 +3520,8 @@ $(function () {
                     type: "get",
                     success: function success(data) {
                         dt.ajax.reload();
-                        __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.modal.alert('Пользователь ' + surname + ' ' + name + ' удален.').then(function () {});
+                        __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.notification({ message: 'Пользователь ' + surname + ' ' + name + ' удален.',
+                            status: 'success', pos: 'top-right' });
                     },
                     error: function error(data) {
                         __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default.a.modal.alert('Не удалось удалить пользователя ' + surname + ' ' + name + '.').then(function () {});

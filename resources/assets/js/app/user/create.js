@@ -11,6 +11,9 @@ export default {
         const minYear = maxYear-35;
         let educationYear;
 
+        /**
+         * Sets education's year range into select options.
+         */
         function setEducationYearOptions() {
             for(let i = maxYear; i >= minYear; i--) {
                 educationYear += '<option value="' + i + '">' + i +'</option>';
@@ -19,6 +22,9 @@ export default {
             $('.education-year-select').append(educationYear);
         }
 
+        /**
+         * Ajax request for deleting user.
+         */
         body.on('click', '.delete-education-item-button', function () {
             const block = $(this).parents('div.education-item-form');
 
@@ -32,10 +38,22 @@ export default {
             block.remove();
         });
 
-        body.on('click', '#submit-create-user-button', function () {
-            $('#create-user-form').submit();
+        /**
+         * Enable/disable select item for finished-at year.
+         */
+        body.on('change', '.education-is-not-finished-checkbox', function () {
+            let input = $('#education-finished-at-input-' + $(this).data('index'));
+            if($(this).prop('checked')) {
+                input.prop('disabled', true);
+            } else {
+                input.prop('disabled', false);
+            }
         });
 
+        /**
+         * Ajax request for getting new education form view partial
+         * and setting it to main form.
+         */
         body.on('click', '#add-education-item-button', function () {
             educationIndex++;
 
@@ -51,6 +69,39 @@ export default {
 
                     edicationField.append(data);
                     setEducationYearOptions();
+                }
+            });
+        });
+
+        /**
+         * Ajax request for storing new user
+         * and hsndling errors of validation.
+         */
+        body.on('click', '#submit-create-user-button', function () {
+
+            $.each($('form#create-user-form :input'), function () {
+                $(this).removeClass('uk-form-danger');
+            });
+
+            let errors = $('.create-user-errors');
+
+            errors.text("");
+
+            const data = $('#create-user-form').serializeArray();
+
+            $.ajax({
+                url: "/users/store",
+                type: "POST",
+                data: data,
+                success: function(response) {
+                    window.location.replace('/users/show/' + response.user.id);
+                },
+                error: function (response) {
+                    $.each(response.responseJSON.errors, function (key, val) {
+                        errors.append('<li class="uk-text-danger">' +
+                            '<i class="icon ion-alert uk-text-danger"></i> ' + val + '</li>');
+                        $( "input[name='" + key + "']" ).addClass('uk-form-danger');
+                    });
                 }
             });
         });

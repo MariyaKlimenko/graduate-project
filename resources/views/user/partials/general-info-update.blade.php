@@ -11,12 +11,6 @@
                     <div class="uk-inline">
                         <input class="uk-input uk-form-width-large" name="name" placeholder="Имя" type="text" value="{{ $user->name }}" required autofocus>
                     </div>
-                    @if ($errors->has('name'))
-                        <br>
-                        <span class="uk-text-danger">
-                        {{ $errors->first('name') }}
-                    </span>
-                    @endif
                 </div>
             </div>
             <div class="uk-margin">
@@ -27,12 +21,6 @@
                 <div class="uk-inline">
                     <input class="uk-input uk-form-width-large" name="surname" placeholder="Фамилия" type="text" value="{{ $user->surname }}" required autofocus>
                 </div>
-                @if ($errors->has('surname'))
-                    <br>
-                    <span class="uk-text-danger">
-                    {{ $errors->first('surname') }}
-                </span>
-                @endif
             </div>
         </div>
 
@@ -42,28 +30,17 @@
                 <div class="uk-inline">
                     <input class="uk-input uk-form-width-large" name="position" placeholder="Позиция" type="text" value="{{ $user->position }}" autofocus>
                 </div>
-                @if ($errors->has('position'))
-                    <br>
-                    <span class="uk-text-danger">
-                        {{ $errors->first('position') }}
-                    </span>
-                @endif
             </div>
             <div class="uk-margin">
                 <label class="uk-form-label uk-text-uppercase" for="form-stacked-text">Отдел</label>
                 <div class="uk-inline">
                     <input class="uk-input uk-form-width-large" name="department" placeholder="Отдел" type="text" value="{{ $user->department }}" autofocus>
                 </div>
-                @if ($errors->has('department'))
-                    <br>
-                    <span class="uk-text-danger">
-                        {{ $errors->first('department') }}
-                    </span>
-                @endif
             </div>
         </div>
     </div>
 </form>
+<ul class="uk-list update-general-info-errors"></ul>
 <br>
 <div class="create-user-buttons">
     <a class="uk-button uk-button-default create-user-button" id="cancel-update-user-button">Отмена</a>

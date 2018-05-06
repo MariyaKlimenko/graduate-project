@@ -26,22 +26,30 @@ class CreateEducationTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
 
-            $table->string('university');
-            $table->string('speciality');
-            $table->string('degree');
+            $table->string('university')
+                  ->nullable();
+
+            $table->string('speciality')
+                  ->nullable();
+
+            $table->string('degree')
+                  ->nullable();
 
             $table->integer('country_id')
                   ->unsigned()
-                  ->index();
+                  ->index()
+                  ->nullable();
 
             $table->foreign('country_id')
                 ->references('id')
                 ->on('countries')
                 ->onDelete('cascade');
 
-            $table->year('started_at');
+            $table->string('started_at')
+                  ->nullable();
 
-            $table->year('finished_at')
+
+            $table->string('finished_at')
                   ->nullable();
 
             $table->boolean('is_not_finished')->nullable();

@@ -99,8 +99,8 @@ export default {
                         type: "get",
                         success: function(data) {
                             dt.ajax.reload();
-                            UIkit.modal.alert('Пользователь ' + surname + ' ' + name + ' удален.').then(function () {
-                            });
+                            UIkit.notification({message: 'Пользователь ' + surname + ' ' + name + ' удален.',
+                                status: 'success', pos: 'top-right'});
                         },
                         error: function (data) {
                             UIkit.modal.alert('Не удалось удалить пользователя ' + surname + ' ' + name + '.').then(function () {

@@ -17,41 +17,25 @@ class EducationRepository extends Repository
     }
 
     /**
-     * Stores and returns education items.
+     * Stores new education item.
      *
      * @param $data
-     * @return array|bool
+     * @return mixed
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @throws \Throwable
      */
     public function store($data)
     {
-        $education = [];
-        foreach ($data['education-university'] as $key => $value) {
-            $inputData = [
-                'university' => $value,
-                'speciality' => $data['education-speciality'][$key],
-                'degree'     => $data['education-degree'][$key]
-                ];
-
-            if (isset($data['education-country-id'][$key])) {
-                $inputData['country_id'] = $data['education-country-id'][$key];
-            }
-            if (isset($data['education-started-at'][$key])) {
-                $inputData['started_at'] = $data['education-started-at'][$key];
-            }
-            if (isset($data['education-finished-at'][$key])) {
-                if ($data['education-finished-at'][$key] == Education::IS_NOT_FINISHED) {
-                    $inputData['is_not_finished'] = true;
-                } else {
-                    $inputData['is_not_finished'] = false;
-                    $inputData['finished_at'] = $data['education-finished-at'][$key];
-                }
-            }
-            $item = Education::firstOrCreate($inputData);
-            if (!$item) {
-                return false;
-            }
-            $education[] = $item;
+        if (isset($data['is_not_finished'])) {
+            $data['is_not_finished'] = 1;
+        } else {
+            $data['is_not_finished'] = 0;
         }
+
+        $education = $this->create($data);
+
+        throw_unless($education, new \Exception('New education was not created'));
+
         return $education;
     }
 
