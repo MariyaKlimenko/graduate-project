@@ -52,7 +52,7 @@
 
                 <div class="uk-inline">
                     <select name="education[{{ $index }}][started_at]"
-                            class="uk-select uk-form-width-large education-year-select" required>
+                            class="uk-select uk-form-width-large year-select" required>
                         <option value="" selected disabled>Выберите год</option>
                     </select>
                 </div>
@@ -64,7 +64,7 @@
 
                 <div class="uk-inline">
                     <select name="education[{{ $index }}][finished_at]" id="education-finished-at-input-{{ $index }}"
-                            class="uk-select  uk-form-width-large education-year-select" required>
+                            class="uk-select  uk-form-width-large year-select" required>
                         <option value="" selected disabled>Выберите год</option>
                     </select>
                 </div>

@@ -3235,7 +3235,11 @@ $(function () {
         var body = $('body');
 
         var educationIndex = 0;
-        var divider = '<hr class="uk-divider-icon">\n';
+        var experienceIndex = 0;
+        var projectIndex = 0;
+        var labelIndex = 0;
+
+        var divider = '<h5 class="uk-heading-divider divider"></h5>\n';
 
         var today = new Date();
         var maxYear = today.getFullYear();
@@ -3245,27 +3249,35 @@ $(function () {
         /**
          * Sets education's year range into select options.
          */
-        function setEducationYearOptions() {
+        function setYearOptions() {
             for (var i = maxYear; i >= minYear; i--) {
                 educationYear += '<option value="' + i + '">' + i + '</option>';
             }
 
-            $('.education-year-select').append(educationYear);
+            $('.year-select').append(educationYear);
         }
 
         /**
-         * Ajax request for deleting user.
+         * Ajax request for deleting education item.
          */
         body.on('click', '.delete-education-item-button', function () {
             var block = $(this).parents('div.education-item-form');
 
-            if (block.prev('hr').length > 0) {
-                block.prev('hr').remove();
+            if (block.prev('h5').length > 0) {
+                block.prev('h5').remove();
             } else {
-                if (block.next('hr').length > 0) {
-                    block.next('hr').remove();
+                if (block.next('h5').length > 0) {
+                    block.next('h5').remove();
                 }
             }
+            block.remove();
+        });
+
+        body.on('click', '.delete-project-item-button', function () {
+            var block = $(this).parents('div.project-item-form');
+
+            block.next('h5').remove();
+
             block.remove();
         });
 
@@ -3299,9 +3311,63 @@ $(function () {
                     }
 
                     edicationField.append(data);
-                    setEducationYearOptions();
+                    setYearOptions();
                 }
             });
+        });
+
+        body.on('click', '#add-label-item-button', function () {
+            labelIndex++;
+            var index = $(this).data('index');
+
+            var labelField = $('.label-field[data-index="' + index + '"]');
+
+            $.ajax({
+                url: '/users/getAddLabelItemPartial/' + index + '/' + labelIndex,
+                type: "get",
+                success: function success(data) {
+                    labelField.append(data);
+                }
+            });
+        });
+
+        body.on('click', '#add-project-item-button', function () {
+            projectIndex++;
+
+            var projectField = $('#project-field');
+
+            $.ajax({
+                url: '/users/getAddProjectItemPartial/' + projectIndex,
+                type: "get",
+                success: function success(data) {
+                    projectField.append(data);
+                    projectField.append(divider);
+
+                    setYearOptions();
+                }
+            });
+        });
+
+        body.on('click', '#add-experience-item-button', function () {
+            experienceIndex++;
+
+            var experienceField = $('#experience-field');
+
+            $.ajax({
+                url: '/users/getAddExperienceItemPartial/' + experienceIndex,
+                type: "get",
+                success: function success(data) {
+                    experienceField.append(data);
+                }
+            });
+        });
+
+        body.on('click', '.delete-experience-item-button', function () {
+            $(this).parents('div.experience-item-form').remove();
+        });
+
+        body.on('click', '.delete-label-item-button', function () {
+            $(this).parents('div.label-item-form').remove();
         });
 
         /**
@@ -3325,6 +3391,7 @@ $(function () {
                 type: "POST",
                 data: data,
                 success: function success(response) {
+
                     window.location.replace('/users/show/' + response.user.id);
                 },
                 error: function error(response) {

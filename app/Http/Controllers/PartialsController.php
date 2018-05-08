@@ -57,4 +57,50 @@ class PartialsController extends Controller
                 ])
             ->render();
     }
+
+    /**
+     * @param $index
+     * @return string
+     * @throws \Throwable
+     */
+    public function getAddProjectItem($index)
+    {
+        return view('user.partials.add-project-form')
+            ->with([
+                'index'     => $index
+            ])
+            ->render();
+    }
+
+    /**
+     * @param $index
+     * @param $labelIndex
+     * @return string
+     * @throws \Throwable
+     */
+    public function getAddLabelItem($index, $labelIndex)
+    {
+        return view('user.partials.add-label-form')
+            ->with([
+                'index'         => $index,
+                'labelIndex'    => $labelIndex
+            ])
+            ->render();
+    }
+
+    /**
+     * Returns partial for adding experience item.
+     *
+     * @param $index
+     * @return string
+     * @throws \Throwable
+     */
+    public function getAddExperienceItem($index)
+    {
+        return view('user.partials.add-experience-form')
+            ->with([
+                'index'     => $index
+            ])
+            ->render();
+    }
 }

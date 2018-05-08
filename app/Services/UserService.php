@@ -8,11 +8,9 @@
 
 namespace App\Services;
 
-use App\Http\Requests\StoreUserRequest;
-use App\Models\Info;
 use App\Models\Role;
-use App\Models\User;
 use App\Repositories\EducationRepository;
+use App\Repositories\ExperienceRepository;
 use App\Repositories\InfoRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Database\DatabaseManager;
@@ -24,6 +22,8 @@ class UserService
     protected $userRepository;
     protected $infoRepository;
     protected $educationRepository;
+    protected $experienceRepository;
+
 
 
     /**
@@ -32,17 +32,20 @@ class UserService
      * @param UserRepository $userRepository
      * @param InfoRepository $infoRepository
      * @param EducationRepository $educationRepository
+     * @param ExperienceRepository $experienceRepository
      */
     public function __construct(
         DatabaseManager $databaseManager,
         UserRepository $userRepository,
         InfoRepository $infoRepository,
-        EducationRepository $educationRepository
+        EducationRepository $educationRepository,
+        ExperienceRepository $experienceRepository
     ) {
         $this->databaseManager = $databaseManager;
         $this->userRepository = $userRepository;
         $this->infoRepository = $infoRepository;
         $this->educationRepository = $educationRepository;
+        $this->experienceRepository = $experienceRepository;
     }
 
     /**
@@ -79,6 +82,16 @@ class UserService
                     throw_unless(
                         $user->education()->save($education),
                         new Exception('Education was not stored')
+                    );
+                }
+            }
+
+            if (isset($data['experience'])) {
+                foreach ($data['experience'] as $item) {
+                    $experience = $this->experienceRepository->store($item);
+                                        throw_unless(
+                        $user->experiences()->save($experience),
+                        new Exception('Experience was not stored')
                     );
                 }
             }

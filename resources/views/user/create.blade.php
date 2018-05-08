@@ -132,13 +132,32 @@
             </div>
 
             <div>
-                <h3 class="unit-heading">Образование</h3>
+                <h3 class="uk-heading-divider">Образование</h3>
                 <div id="education-field"></div>
                 <button type="button" id="add-education-item-button"
                         class="uk-button uk-button-primary add-item-button">
                    <span class="add-item-icon">+</span>
                 </button>
             </div>
+
+            <div>
+                <h3 class="uk-heading-divider">Опыт (технологии, языки, пр.)</h3>
+                <div id="experience-field"></div>
+                <button type="button" id="add-experience-item-button"
+                        class="uk-button uk-button-primary add-item-button">
+                    <span class="add-item-icon">+</span>
+                </button>
+            </div>
+
+            <div>
+                <h3 class="uk-heading-divider">Проэкты</h3>
+                <div id="project-field"></div>
+                <button type="button" id="add-project-item-button"
+                        class="uk-button uk-button-primary add-item-button">
+                    <span class="add-item-icon">+</span>
+                </button>
+            </div>
+
         </form>
 
         <ul class="uk-list create-user-errors"></ul>

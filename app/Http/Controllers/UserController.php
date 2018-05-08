@@ -48,13 +48,6 @@ class UserController extends Controller
         $data = $request->all();
         $data['password'] = '111111';
         $user = $this->userService->store($data);
-        if (!$user) {
-            return response()->json([
-                'type' => 'error',
-                'title' => 'Ошибка',
-                'message' => 'Возникла ошибка.'
-            ]);
-        }
 
         return response()->json([
             'user' => $user

@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Experience extends Model
 {
-    public $timestamps = false;
-
-    public $fillable = [
+    protected $fillable = [
         'name',
         'duration'
     ];

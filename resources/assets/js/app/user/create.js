@@ -4,7 +4,11 @@ export default {
         const body = $('body');
 
         let educationIndex = 0;
-        const divider = '<hr class="uk-divider-icon">\n';
+        let experienceIndex = 0;
+        let projectIndex = 0;
+        let labelIndex = 0;
+
+        const divider = '<h5 class="uk-heading-divider divider"></h5>\n';
 
         const today = new Date();
         const maxYear = today.getFullYear();
@@ -14,27 +18,35 @@ export default {
         /**
          * Sets education's year range into select options.
          */
-        function setEducationYearOptions() {
+        function setYearOptions() {
             for(let i = maxYear; i >= minYear; i--) {
                 educationYear += '<option value="' + i + '">' + i +'</option>';
             }
 
-            $('.education-year-select').append(educationYear);
+            $('.year-select').append(educationYear);
         }
 
         /**
-         * Ajax request for deleting user.
+         * Ajax request for deleting education item.
          */
         body.on('click', '.delete-education-item-button', function () {
             const block = $(this).parents('div.education-item-form');
 
-            if (block.prev('hr').length > 0) {
-                block.prev('hr').remove();
+            if (block.prev('h5').length > 0) {
+                block.prev('h5').remove();
             } else {
-                if(block.next('hr').length > 0 ) {
-                    block.next('hr').remove();
+                if(block.next('h5').length > 0 ) {
+                    block.next('h5').remove();
                 }
             }
+            block.remove();
+        });
+
+        body.on('click', '.delete-project-item-button', function () {
+            const block = $(this).parents('div.project-item-form');
+
+            block.next('h5').remove();
+
             block.remove();
         });
 
@@ -68,10 +80,68 @@ export default {
                     }
 
                     edicationField.append(data);
-                    setEducationYearOptions();
+                    setYearOptions();
                 }
             });
         });
+
+
+        body.on('click', '#add-label-item-button', function () {
+            labelIndex++;
+            let index = $(this).data('index');
+
+            let labelField = $('.label-field[data-index="' + index +'"]');
+
+            $.ajax({
+                url: '/users/getAddLabelItemPartial/' + index + '/' + labelIndex,
+                type: "get",
+                success: function(data) {
+                    labelField.append(data);
+                }
+            });
+        });
+
+
+        body.on('click', '#add-project-item-button', function () {
+            projectIndex++;
+
+            let projectField = $('#project-field');
+
+            $.ajax({
+                url: '/users/getAddProjectItemPartial/' + projectIndex,
+                type: "get",
+                success: function(data) {
+                    projectField.append(data);
+                    projectField.append(divider);
+
+                    setYearOptions();
+                }
+            });
+        });
+
+
+        body.on('click', '#add-experience-item-button', function () {
+            experienceIndex++;
+
+            let experienceField = $('#experience-field');
+
+            $.ajax({
+                url: '/users/getAddExperienceItemPartial/' + experienceIndex,
+                type: "get",
+                success: function(data) {
+                    experienceField.append(data);
+                }
+            });
+        });
+
+        body.on('click', '.delete-experience-item-button', function () {
+            $(this).parents('div.experience-item-form').remove();
+        });
+
+        body.on('click', '.delete-label-item-button', function () {
+            $(this).parents('div.label-item-form').remove();
+        });
+
 
         /**
          * Ajax request for storing new user
@@ -94,6 +164,7 @@ export default {
                 type: "POST",
                 data: data,
                 success: function(response) {
+
                     window.location.replace('/users/show/' + response.user.id);
                 },
                 error: function (response) {

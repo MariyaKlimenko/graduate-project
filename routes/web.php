@@ -51,3 +51,15 @@ Route::get('users/getUpdateGeneralInfoPartial/{id}', 'PartialsController@getUpda
 Route::get('users/getAddEducationItemPartial/{index}', 'PartialsController@getAddEducationItem')
     ->name('users/getAddEducationItemPartial')
     ->middleware('auth', 'level:3');
+
+Route::get('users/getAddExperienceItemPartial/{index}', 'PartialsController@getAddExperienceItem')
+    ->name('users/getExperienceItemPartial')
+    ->middleware('auth', 'level:3');
+
+Route::get('users/getAddProjectItemPartial/{index}', 'PartialsController@getAddProjectItem')
+    ->name('users/getAddProjectItemPartial')
+    ->middleware('auth', 'level:3');
+
+Route::get('users/getAddLabelItemPartial/{index}/{labelIndex}', 'PartialsController@getAddLabelItem')
+    ->name('users/getAddLabelItemPartial')
+    ->middleware('auth', 'level:3');

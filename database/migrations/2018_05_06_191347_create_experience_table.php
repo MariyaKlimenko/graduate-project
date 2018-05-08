@@ -13,7 +13,7 @@ class CreateExperienceTable extends Migration
      */
     public function up()
     {
-        Schema::create('experience', function (Blueprint $table) {
+        Schema::create('experiences', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('user_id')
@@ -39,6 +39,6 @@ class CreateExperienceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('experience');
+        Schema::dropIfExists('experiences');
     }
 }
