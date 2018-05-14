@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             'RolesSeeder',
             'AdminSeeder',
-            'UsersSeeder',
+           // 'UsersSeeder',
             'CountriesSeeder'
             ]);
     }

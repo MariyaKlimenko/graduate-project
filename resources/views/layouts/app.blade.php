@@ -18,6 +18,7 @@
     <link href="{{ asset('css/uikit.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/ionicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dropzone.css') }}" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Play" rel="stylesheet">
 </head>

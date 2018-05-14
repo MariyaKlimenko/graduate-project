@@ -165,6 +165,11 @@ $red: rgb(153, 0, 0);
   width: 300px;
 }
 
+.show-user-p-2-3 {
+  @extend .show-user-p;
+  width: 110px;
+}
+
 .show-user-label {
   color: rgb(102, 102, 102) !important;
 }
@@ -242,4 +247,45 @@ $red: rgb(153, 0, 0);
 
 .divider {
   margin-top: 0 !important;
+}
+
+#image-place {
+  margin-top: 30px;
+  height: 250px;
+  width: 250px;
+  border: solid 3px $light-green;
+  border-radius: 5px;
+}
+
+.profile-image {
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+  border: solid 0 transparent;
+  border-radius: 5px;
+}
+
+.add-photo-button {
+  width: 250px;
+  border-color: $light-green;
+  border-width: 3px;
+}
+
+.delete-photo-button {
+  margin: 0 !important;
+  padding: 5px !important;
+  border: solid 0 transparent;
+}
+
+.show-project-description {
+  width: 470px;
+}
+
+.file-class{
+  font-family: 'Didact Gothic', sans-serif !important;
+  color: blue;
+}
+
+.show-additional {
+  margin-left: 45px;
 }

@@ -12,6 +12,8 @@ use App\Models\Role;
 use App\Repositories\EducationRepository;
 use App\Repositories\ExperienceRepository;
 use App\Repositories\InfoRepository;
+use App\Repositories\LabelRepository;
+use App\Repositories\ProjectRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Database\DatabaseManager;
 use Exception;
@@ -23,8 +25,8 @@ class UserService
     protected $infoRepository;
     protected $educationRepository;
     protected $experienceRepository;
-
-
+    protected $projectRepository;
+    protected $labelRepository;
 
     /**
      * UserService constructor.
@@ -33,19 +35,25 @@ class UserService
      * @param InfoRepository $infoRepository
      * @param EducationRepository $educationRepository
      * @param ExperienceRepository $experienceRepository
+     * @param ProjectRepository $projectRepository
+     * @param LabelRepository $labelRepository
      */
     public function __construct(
         DatabaseManager $databaseManager,
         UserRepository $userRepository,
         InfoRepository $infoRepository,
         EducationRepository $educationRepository,
-        ExperienceRepository $experienceRepository
+        ExperienceRepository $experienceRepository,
+        ProjectRepository $projectRepository,
+        LabelRepository $labelRepository
     ) {
         $this->databaseManager = $databaseManager;
         $this->userRepository = $userRepository;
         $this->infoRepository = $infoRepository;
         $this->educationRepository = $educationRepository;
         $this->experienceRepository = $experienceRepository;
+        $this->projectRepository = $projectRepository;
+        $this->labelRepository = $labelRepository;
     }
 
     /**
@@ -77,8 +85,8 @@ class UserService
             $user->attachRole($role);
 
             if (isset($data['education'])) {
-                foreach ($data['education'] as $item) {
-                    $education = $this->educationRepository->store($item);
+                foreach ($data['education'] as $itemEducation) {
+                    $education = $this->educationRepository->store($itemEducation);
                     throw_unless(
                         $user->education()->save($education),
                         new Exception('Education was not stored')
@@ -87,15 +95,34 @@ class UserService
             }
 
             if (isset($data['experience'])) {
-                foreach ($data['experience'] as $item) {
-                    $experience = $this->experienceRepository->store($item);
-                                        throw_unless(
+                foreach ($data['experience'] as $itemExperience) {
+                    $experience = $this->experienceRepository->store($itemExperience);
+                    throw_unless(
                         $user->experiences()->save($experience),
                         new Exception('Experience was not stored')
                     );
                 }
             }
 
+            if (isset($data['project'])) {
+                foreach ($data['project'] as $itemProject) {
+                    $project = $this->projectRepository->store($itemProject);
+                    if (isset($itemProject['labels'])) {
+                        foreach ($itemProject['labels'] as $labelData) {
+                            $label = $this->labelRepository->store($labelData);
+                            throw_unless(
+                                $project->labels()->save($label),
+                                new Exception('Label was not stored')
+                            );
+                        }
+                    }
+
+                    throw_unless(
+                        $user->projects()->save($project),
+                        new Exception('Project was not stored')
+                    );
+                }
+            }
         } catch (Exception $exception) {
             $this->databaseManager->rollBack();
             return false;
@@ -126,9 +153,6 @@ class UserService
             $user->info->fill($data);
 
             throw_unless($user->push(), new Exception('Profile was not stored'));
-
-
-
         } catch (Exception $exception) {
             $this->databaseManager->rollBack();
             return false;
@@ -160,5 +184,4 @@ class UserService
         $this->databaseManager->commit();
         return 'ok';
     }
-
 }

@@ -21,38 +21,65 @@
 </div>
 <div class="main-body">
 
-    <h3>Общая информация
-        @if($authUserRole->level >= $roleLevels['moderator'] && $authUserRole->level > $userRoleLevel)
-            <i class="icon ion-compose table-icon-button update-general-info-button" data-id="{{$user->id}}"></i>
-        @endif
-    </h3>
     <div id="general-info">
-        <div class="uk-child-width-1-2 show-user-section"  uk-grid>
+        <div class="uk-child-width-1-3 show-user-section"  uk-grid>
+            <div>
+                <div id="image-place" class="uk-inline uk-background-cover " style="background-image: url({{ asset('images/df.jpg') }});">
+                @if($user->photo > "")
+                        <img class="profile-image" src="{{ asset('images/' . $user->photo) }}">
+                    @endif
+                </div>
+            </div>
             <div>
                 <div class="uk-margin">
                     <label class="uk-form-label show-user-label" for="form-stacked-text">
                         Имя
                     </label>
                     <div class="uk-inline">
-                        <p class="show-user-p">{{ $user->name }}</p>
+                        <p class="show-user-p-3">{{ $user->name }}</p>
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label show-user-label" for="form-stacked-text">
+                        Электронный адрес
+                    </label>
+                    <div class="uk-inline">
+                        <p class="show-user-p-3">{{ $user->email }}</p>
                     </div>
                 </div>
                 <div class="uk-margin">
                     <label class="uk-form-label show-user-label" for="form-stacked-text">
-                        Фамилия
+                        Телефон
                     </label>
                     <div class="uk-inline">
-                        <p class="show-user-p">{{ $user->surname }}</p>
+                        <p class="show-user-p-3">{{ $user->info->phone }}</p>
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label show-user-label" for="form-stacked-text">
+                        Местоположение
+                    </label>
+                    <div class="uk-inline">
+                        <p class="show-user-p-3">{{ $user->info->location }}</p>
                     </div>
                 </div>
             </div>
             <div>
                 <div class="uk-margin">
                     <label class="uk-form-label show-user-label" for="form-stacked-text">
+                        Фамилия
+                    </label>
+                    <div class="uk-inline">
+                        <p class="show-user-p-3">{{ $user->surname }}</p>
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label show-user-label" for="form-stacked-text">
                         Позиция
                     </label>
                     <div class="uk-inline">
-                        <p class="show-user-p">{{ $user->position }}</p>
+                        <p class="show-user-p-3">{{ $user->position }}</p>
                     </div>
                 </div>
                 <div class="uk-margin">
@@ -60,41 +87,10 @@
                         Отдел
                     </label>
                     <div class="uk-inline">
-                        <p class="show-user-p">{{ $user->department }}</p>
+                        <p class="show-user-p-3">{{ $user->department }}</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <h3>Контакты</h3>
-    <div class="uk-child-width-1-2 show-user-section" uk-grid>
-        <div>
-            <div class="uk-margin">
-                <label class="uk-form-label show-user-label" for="form-stacked-text">
-                    Местоположение
-                </label>
-                <div class="uk-inline">
-                    <p class="show-user-p">{{ $user->info->location }}</p>
-                </div>
-            </div>
-            <div class="uk-margin">
-                <label class="uk-form-label show-user-label" for="form-stacked-text">
-                    Телефон
-                </label>
-                <div class="uk-inline">
-                    <p class="show-user-p">{{ $user->info->phone }}</p>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="uk-margin">
-                <label class="uk-form-label show-user-label" for="form-stacked-text">
-                    Электронный адрес<
-                </label>
-                <div class="uk-inline">
-                    <p class="show-user-p">{{ $user->email }}</p>
-                </div>
             </div>
         </div>
     </div>
@@ -172,6 +168,77 @@
         </span>
    @endforeach
 
+    <h3>Проэкты</h3>
+
+    @foreach($user->projects as $project)
+        @if((count($user->projects) > 1) && ($loop->iteration !=1))
+            <hr class="uk-divider-icon show-user-section">
+        @endif
+        <div class="uk-child-width-1-2 show-user-section" uk-grid>
+
+            <div>
+                <div class="uk-margin">
+                    <label class="uk-form-label show-user-label" for="form-stacked-text">
+                        Название
+                    </label>
+                    <div class="uk-inline">
+                        <p class="show-user-p">{{ $project->name }}</p>
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <div class="uk-child-width-1-3" uk-grid>
+
+                        <div>
+                            <label class="uk-form-label show-user-label" for="form-stacked-text">
+                                Начало
+                            </label>
+                            <div class="uk-inline">
+                                <p class="show-user-p-2-3">{{ $project->started_at }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="uk-form-label show-user-label" for="form-stacked-text">
+                                Окончание
+                            </label>
+                            <div class="uk-inline">
+                                <p class="show-user-p-2-3">{{ $project->finished_at }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="uk-form-label show-user-label" for="form-stacked-text">
+                                Часов на проэкте
+                            </label>
+                            <div class="uk-inline">
+                                <p class="show-user-p-2-3">{{ $project->duration }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    @foreach($project->labels as $label)
+                        <span class="show-experience-item">
+                            <span class="show-experience-name">{{ $label->name }}</span>
+                        </span>
+                    @endforeach
+                </div>
+            </div>
+            <div>
+                <div class="uk-margin">
+                    <label class="uk-form-label show-user-label" for="form-stacked-text">
+                        Описание
+                    </label>
+                    <div class="uk-inline show-project-description">
+                        <p class="">{{ $project->description }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    @endforeach
+    <h3>Дополнительная информация</h3>
+    <div class="uk-inline show-additional">
+        <p class="">{{ $user->info->additional }}</p>
+    </div>
 
 </div>
 @endsection

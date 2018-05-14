@@ -3229,10 +3229,47 @@ $(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uikit_min_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uikit_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__uikit_min_js__);
+
+
 /* harmony default export */ __webpack_exports__["a"] = ({
     bindEvents: function bindEvents() {
+
         var body = $('body');
+
+        var delPhotoBut = '<div class="uk-position-top-right uk-overlay uk-overlay-default delete-photo-button">\n' + '        <button type="button" class="uk-close-large" uk-close></button>\n' + '    </div>\n';
+
+        $('#upload-file-input').change(function () {
+
+            var imagePlace = $('#image-place');
+            var formData = new FormData();
+
+            var file = $('#upload-file-input')[0].files;
+
+            var fileSize = $('#max-file-size').value;
+
+            formData.append('MAX_FILE_SIZE', fileSize);
+
+            formData.append('image', file[0], file[0].name);
+
+            $.ajax({
+                url: "/users/picture/upload",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: formData,
+                success: function success(response) {
+                    imagePlace.html(response.html);
+                    imagePlace.append(delPhotoBut);
+                    $('#user-photo-input').val(response.imageName);
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
 
         var educationIndex = 0;
         var experienceIndex = 0;
@@ -3386,12 +3423,12 @@ $(function () {
 
             var data = $('#create-user-form').serializeArray();
 
+            console.log(data);
             $.ajax({
                 url: "/users/store",
                 type: "POST",
                 data: data,
                 success: function success(response) {
-
                     window.location.replace('/users/show/' + response.user.id);
                 },
                 error: function error(response) {
@@ -3401,6 +3438,12 @@ $(function () {
                     });
                 }
             });
+        });
+
+        body.on('click', '.delete-photo-button', function () {
+            console.log('kik');
+            $('#user-photo-input').val('');
+            $('#image-place').empty();
         });
     },
     init: function init() {
@@ -3569,7 +3612,9 @@ $(function () {
             window.location = "/users/show/" + $(this).data('id');
         });
 
-        body.on('click', '.table-save-button', function () {});
+        body.on('click', '.table-save-button', function () {
+            window.location = "/users/pdf/" + $(this).data('id');
+        });
 
         body.on('click', '.table-edit-button', function () {});
 

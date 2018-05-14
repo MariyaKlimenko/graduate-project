@@ -79,6 +79,7 @@ export default {
         });
 
         body.on('click', '.table-save-button', function () {
+            window.location ="/users/pdf/" + $(this).data('id');
         });
 
         body.on('click', '.table-edit-button', function () {

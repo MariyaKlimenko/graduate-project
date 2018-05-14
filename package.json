@@ -18,6 +18,7 @@
         "lodash": "^4.17.4",
         "vue": "^2.1.10",
         "uikit": "*",
-        "datatables.net": "^1.10.15"
+        "datatables.net": "^1.10.15",
+        "dropzone": "*"
     }
 }

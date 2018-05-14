@@ -14,11 +14,21 @@ class Project extends Model
         'description',
     ];
 
+    /**
+     * Get the owner of project.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Get labels.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function labels()
     {
         return $this->hasMany(Label::class);

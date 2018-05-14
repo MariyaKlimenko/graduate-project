@@ -10,6 +10,13 @@ use App\Repositories\EducationRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use App\Services\UserService;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Input;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -153,4 +160,52 @@ class UserController extends Controller
         return response()->json(['responseText' => 'Success!'], 200);
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     * @throws \Throwable
+     */
+    public function upload(Request $request)
+    {
+        $image = $request->file('image');
+
+        $imageName = time().'.'.$image->getClientOriginalExtension();
+
+        $destinationPath = public_path('/images');
+
+        $image->move($destinationPath, $imageName);
+        $html = view('user.partials.show-image')
+            ->with([
+                'imageName' => $imageName,
+            ])
+            ->render();
+
+        return response()->json([
+            'responseText'  => 'Success!',
+            'html'          => $html,
+            'imageName'     => $imageName
+        ], 200);
+    }
+
+
+    /**
+     * Generates .pdf file with user's information.
+     *
+     * @param $userId
+     * @throws \Throwable
+     */
+    public function pdf($userId)
+    {
+        $user = $this->userRepository->find($userId);
+        $pdf = new Dompdf();
+        $view = view('user.file')->with(['user' => $user])->render();
+        $pdf->loadHtml($view);
+
+        $pdf->setPaper('A4', 'portrait');
+
+        $pdf->render();
+
+        $fileName = $user->name . '_' . $user->surname . '_CV';
+        $pdf->stream($fileName);
+    }
 }

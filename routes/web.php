@@ -63,3 +63,11 @@ Route::get('users/getAddProjectItemPartial/{index}', 'PartialsController@getAddP
 Route::get('users/getAddLabelItemPartial/{index}/{labelIndex}', 'PartialsController@getAddLabelItem')
     ->name('users/getAddLabelItemPartial')
     ->middleware('auth', 'level:3');
+
+Route::post('users/picture/upload', 'UserController@upload')
+    ->name('users/picture/upload')
+    ->middleware('auth', 'level:3');
+
+Route::get('users/pdf/{id}', 'UserController@pdf')
+    ->name('users/pdf')
+    ->middleware('auth', 'level:2');

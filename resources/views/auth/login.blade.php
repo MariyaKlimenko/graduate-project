@@ -6,7 +6,7 @@
 
             <div class="uk-card-secondary card-background uk-card uk-card-body card-shadow uk-text-center">
 
-                <h3 class="uk-heading-line uk-text-center uk-text-muted"><span>Вход в систему</span></h4>
+                <h3 class="uk-heading-line uk-text-center uk-text-muted"><span>Вход в систему</span></h3>
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 

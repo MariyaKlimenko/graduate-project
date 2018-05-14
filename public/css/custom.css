@@ -152,7 +152,8 @@
 }
 
 .show-user-p,
-.show-user-p-3 {
+.show-user-p-3,
+.show-user-p-2-3 {
   height: 17px !important;
   color: #333333 !important;
   border-bottom: 1px solid;
@@ -163,6 +164,10 @@
 
 .show-user-p-3 {
   width: 300px;
+}
+
+.show-user-p-2-3 {
+  width: 110px;
 }
 
 .show-user-label {
@@ -244,5 +249,47 @@
 
 .divider {
   margin-top: 0 !important;
+}
+
+#image-place {
+  margin-top: 30px;
+  height: 250px;
+  width: 250px;
+  border: solid 3px rgba(0, 255, 0, 0.06);
+  border-radius: 5px;
+}
+
+.profile-image {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 250px;
+  height: 250px;
+  border: solid 0 transparent;
+  border-radius: 5px;
+}
+
+.add-photo-button {
+  width: 250px;
+  border-color: rgba(0, 255, 0, 0.06);
+  border-width: 3px;
+}
+
+.delete-photo-button {
+  margin: 0 !important;
+  padding: 5px !important;
+  border: solid 0 transparent;
+}
+
+.show-project-description {
+  width: 470px;
+}
+
+.file-class {
+  font-family: 'Didact Gothic', sans-serif !important;
+  color: blue;
+}
+
+.show-additional {
+  margin-left: 45px;
 }
 

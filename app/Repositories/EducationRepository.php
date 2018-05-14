@@ -38,5 +38,4 @@ class EducationRepository extends Repository
 
         return $education;
     }
-
 }

@@ -1,7 +1,49 @@
+import UIkit from './../../uikit.min.js';
 
 export default {
     bindEvents () {
+
+
         const body = $('body');
+
+        let delPhotoBut = '<div class="uk-position-top-right uk-overlay uk-overlay-default delete-photo-button">\n' +
+            '        <button type="button" class="uk-close-large" uk-close></button>\n' +
+            '    </div>\n';
+
+
+
+        $('#upload-file-input').change(function () {
+
+            let imagePlace = $('#image-place');
+            let formData = new FormData();
+
+            let file = $('#upload-file-input')[0].files;
+
+            let fileSize =$('#max-file-size').value;
+
+            formData.append('MAX_FILE_SIZE', fileSize);
+
+            formData.append('image', file[0], file[0].name);
+
+            $.ajax({
+                url: "/users/picture/upload",
+                type: "POST",
+                processData: false,
+                contentType:false,
+                dataType: 'json',
+                data: formData,
+                success: function(response) {
+                    imagePlace.html(response.html);
+                    imagePlace.append(delPhotoBut);
+                    $('#user-photo-input').val(response.imageName);
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
+            });
+        });
+
+
 
         let educationIndex = 0;
         let experienceIndex = 0;
@@ -159,12 +201,12 @@ export default {
 
             const data = $('#create-user-form').serializeArray();
 
+            console.log(data);
             $.ajax({
                 url: "/users/store",
                 type: "POST",
                 data: data,
                 success: function(response) {
-
                     window.location.replace('/users/show/' + response.user.id);
                 },
                 error: function (response) {
@@ -176,6 +218,13 @@ export default {
                 }
             });
         });
+
+        body.on('click', '.delete-photo-button', function () {
+            console.log('kik');
+            $('#user-photo-input').val('');
+            $('#image-place').empty();
+        });
+
     },
 
     init () {

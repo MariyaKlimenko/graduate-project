@@ -11,6 +11,13 @@ class Experience extends Model
         'duration'
     ];
 
+    public $timestamps = false;
+
+
+    /**
+     * Get the owner of experience.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

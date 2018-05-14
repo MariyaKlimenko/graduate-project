@@ -19,13 +19,15 @@ const settings = {
 const vendors = [
     'jquery',
     'uikit',
-    'datatables.net'
+    'datatables.net',
+    'dropzone'
 ];
 
 mix.extract(vendors, 'public/js/vendor.js')
     .autoload({
     jquery: ['$', 'window.jQuery', 'jQuery', 'jquery'],
     UIKit: ['UIKit', 'window.UIKit'],
+    dropzone: ['dropzone']
     });
 
 
@@ -35,7 +37,9 @@ mix.js(settings.jsPath + 'app.js', 'public/js/app.js')
 mix.js(settings.jsPath + 'app/main.js', 'public/js/main.js');
 mix.js(settings.jsPath + 'uikit.min.js', 'public/js/uikit.min.js');
 
+
 mix.styles(settings.cssPath + 'uikit.min.css', 'public/css/uikit.min.css');
+mix.styles(settings.cssPath + 'dropzone.css', 'public/css/dropzone.css');
 
 mix.copy(settings.fontsPath + 'ionicons.eot', 'public/fonts/ionicons.eot');
 mix.copy(settings.fontsPath + 'ionicons.svg', 'public/fonts/ionicons.svg');

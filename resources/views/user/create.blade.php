@@ -5,10 +5,26 @@
         <h2 >Создать нового пользователя</h2>
     </div>
     <div class="main-body">
+
         <form method="POST" action="" id="create-user-form" class="uk-form-stacked">
-            <div class="uk-child-width-1-2" uk-grid>
+            <div class="uk-child-width-1-3" uk-grid>
             {{-- column left --}}
+
                 <div>
+                    <div id="image-place" class="uk-inline uk-background-cover " style="background-image: url({{ asset('images/df.jpg') }});">
+                    </div>
+
+                    <input type="hidden" id="max-file-size" name="MAX_FILE_SIZE" value="30000000" />
+                    <div class="uk-margin">
+                        <div uk-form-custom>
+                            <input type="file" id="upload-file-input" name="image">
+                            <button class="uk-button uk-button-default add-photo-button" type="button" tabindex="-1">Выберите фотографию</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+
                     <div class="uk-margin">
                         <label class="uk-form-label">
                             Имя
@@ -157,7 +173,14 @@
                     <span class="add-item-icon">+</span>
                 </button>
             </div>
-
+            <div>
+                <h3 class="uk-heading-divider">Дополнительная информация</h3>
+                <div class="uk-inline">
+                <textarea class="uk-textarea uk-form-width-large" rows="5" name="additional"
+                          placeholder="Дополнительная информация">{{ old('additional') }}</textarea>
+                </div>
+            </div>
+            <input type="hidden" name="photo" value="" id="user-photo-input">
         </form>
 
         <ul class="uk-list create-user-errors"></ul>
@@ -168,4 +191,5 @@
                    id="submit-create-user-button"> Создать</button>
        </div>
     </div>
+    <br>
 @endsection

@@ -8,7 +8,6 @@
 
 namespace App\Repositories;
 
-
 use App\Models\Experience;
 
 class ExperienceRepository extends Repository
@@ -23,6 +22,12 @@ class ExperienceRepository extends Repository
         return Experience::class;
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @throws \Throwable
+     */
     public function store($data)
     {
         $experience = $this->create([
@@ -30,7 +35,7 @@ class ExperienceRepository extends Repository
             'duration' => intval($data['duration'])
         ]);
 
-        throw_unless($experience, new \Exception('New education was not created'));
+        throw_unless($experience, new \Exception('New experience was not created'));
 
         return $experience;
     }

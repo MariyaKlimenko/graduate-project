@@ -11,6 +11,11 @@ class Label extends Model
         'count'
     ];
 
+    /**
+     * Get the project where this label is.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function project()
     {
         return $this->belongsTo(Project::class);
