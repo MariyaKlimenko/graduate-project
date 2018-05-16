@@ -28,11 +28,6 @@ class CreateLabelsTable extends Migration
 
             $table->string('name');
 
-            /**
-             * Count of tasks using this technology on specific project.
-             */
-            $table->integer('count');
-
             $table->timestamps();
         });
     }

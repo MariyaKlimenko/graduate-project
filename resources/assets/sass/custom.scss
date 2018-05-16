@@ -279,6 +279,7 @@ $red: rgb(153, 0, 0);
 
 .show-project-description {
   width: 470px;
+  color: rgb(51, 51, 51) !important;
 }
 
 .file-class{
@@ -288,4 +289,16 @@ $red: rgb(153, 0, 0);
 
 .show-additional {
   margin-left: 45px;
+}
+
+.show-additional-p {
+  color: rgb(51, 51, 51) !important;
+}
+
+.sync-jira-button{
+  margin-left: 30px;
+}
+
+.sync-jira-modal {
+  width: 400px;
 }

@@ -12,6 +12,7 @@ class Project extends Model
         'started_at',
         'finished_at',
         'description',
+        'jira_id'
     ];
 
     /**

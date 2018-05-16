@@ -166,7 +166,7 @@
             </div>
 
             <div>
-                <h3 class="uk-heading-divider">Проэкты</h3>
+                <h3 class="uk-heading-divider">Проекты</h3>
                 <div id="project-field"></div>
                 <button type="button" id="add-project-item-button"
                         class="uk-button uk-button-primary add-item-button">

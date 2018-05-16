@@ -282,6 +282,7 @@
 
 .show-project-description {
   width: 470px;
+  color: #333333 !important;
 }
 
 .file-class {
@@ -291,5 +292,17 @@
 
 .show-additional {
   margin-left: 45px;
+}
+
+.show-additional-p {
+  color: #333333 !important;
+}
+
+.sync-jira-button {
+  margin-left: 30px;
+}
+
+.sync-jira-modal {
+  width: 400px;
 }
 

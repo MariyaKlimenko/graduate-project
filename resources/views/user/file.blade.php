@@ -100,7 +100,7 @@
         <div class="contacts">
             @if($user->info->location != null)<p>{{ $user->info->location }}</p>@endif
                 @if($user->info->phone != null)<p>{{ $user->info->phone }}</p>@endif
-                @if($user->info->email != null)<p>{{ $user->email }}</p>@endif
+                @if($user->email != null)<p>{{ $user->email }}</p>@endif
         </div>
     </div>
     <div>
@@ -132,7 +132,7 @@
         </div>
         @endif
         @if(count($user->projects) > 0)
-        <div class="block"><div class="left"><p>ПРОЭКТЫ</p></div>
+        <div class="block"><div class="left"><p>ПРОЕКТЫ</p></div>
             <div class="right"><ul>@foreach($user->projects as $project)
                         <li><p><b>{{ $project->name }}</b>,
                                 {{ $project->started_at }} - {{ $project->finished_at }}

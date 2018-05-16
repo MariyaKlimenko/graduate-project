@@ -26,7 +26,6 @@ class LabelRepository extends Repository
     {
         $label = $this->create([
             'name' => $data['name'],
-            'count' => $data['count']
         ]);
 
         return $label;

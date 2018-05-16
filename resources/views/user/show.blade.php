@@ -168,7 +168,10 @@
         </span>
    @endforeach
 
-    <h3>Проэкты</h3>
+    <h3 class="show-projects-label">Проекты
+        <button type="button" class="uk-button uk-button-primary uk-button-small sync-jira-button"
+                uk-toggle="target: #sync-jira-modal">Синхронизировать с Jira</button>
+    </h3>
 
     @foreach($user->projects as $project)
         @if((count($user->projects) > 1) && ($loop->iteration !=1))
@@ -206,7 +209,7 @@
                         </div>
                         <div>
                             <label class="uk-form-label show-user-label" for="form-stacked-text">
-                                Часов на проэкте
+                                Часов на проекте
                             </label>
                             <div class="uk-inline">
                                 <p class="show-user-p-2-3">{{ $project->duration }}</p>
@@ -237,8 +240,26 @@
     @endforeach
     <h3>Дополнительная информация</h3>
     <div class="uk-inline show-additional">
-        <p class="">{{ $user->info->additional }}</p>
+        <p class="show-additional-p">{{ $user->info->additional }}</p>
     </div>
 
+</div>
+
+<div id="sync-jira-modal" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body sync-jira-modal">
+        <h2 class="uk-modal-title">Авторизация в Jira</h2>
+        <form action="" id="sync-jira-form">
+            <div class="uk-margin">
+                <input class="uk-input" name="login" type="text" placeholder="Логин">
+            </div>
+            <div class="uk-margin">
+                <input class="uk-input" name="password" type="password" placeholder="Пароль">
+            </div>
+        </form>
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Отмена</button>
+            <button class="uk-button uk-button-primary sync-jira-submit" type="button">ОК</button>
+        </p>
+    </div>
 </div>
 @endsection

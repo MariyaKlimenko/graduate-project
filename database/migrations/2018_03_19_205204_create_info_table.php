@@ -32,6 +32,8 @@ class CreateInfoTable extends Migration
                   ->on('users')
                   ->onDelete('cascade');
 
+            $table->string('additional')->nullable();
+
             $table->timestamps();
         });
     }

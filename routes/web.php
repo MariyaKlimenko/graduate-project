@@ -71,3 +71,7 @@ Route::post('users/picture/upload', 'UserController@upload')
 Route::get('users/pdf/{id}', 'UserController@pdf')
     ->name('users/pdf')
     ->middleware('auth', 'level:2');
+
+Route::get('jira', 'JiraController@get')
+    ->name('jira')
+    ->middleware('auth', 'level:2');
