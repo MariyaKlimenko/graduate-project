@@ -29,7 +29,8 @@ class ProjectRepository extends Repository
             'description' => $data['description'],
             'duration' => $data['duration'],
             'started_at' => $data['started_at'],
-            'finished_at' => $data['finished_at']
+            'finished_at' => $data['finished_at'],
+            'jira_id' => $data['jira_id']
         ]);
 
         return $project;

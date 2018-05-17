@@ -185,7 +185,7 @@
                         Название
                     </label>
                     <div class="uk-inline">
-                        <p class="show-user-p">{{ $project->name }}</p>
+                        <p class="show-user-p"><b>{{ $project->name }}</b></p>
                     </div>
                 </div>
                 <div class="uk-margin">
@@ -248,7 +248,8 @@
 <div id="sync-jira-modal" uk-modal>
     <div class="uk-modal-dialog uk-modal-body sync-jira-modal">
         <h2 class="uk-modal-title">Авторизация в Jira</h2>
-        <form action="" id="sync-jira-form">
+        <form action="{{ route('jira') }}" id="sync-jira-form" method="POST">
+            {{ csrf_field() }}
             <div class="uk-margin">
                 <input class="uk-input" name="login" type="text" placeholder="Логин">
             </div>

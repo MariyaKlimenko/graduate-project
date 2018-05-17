@@ -106,6 +106,7 @@ class UserService
 
             if (isset($data['project'])) {
                 foreach ($data['project'] as $itemProject) {
+                    $itemProject['jira_id'] = 'none';
                     $project = $this->projectRepository->store($itemProject);
                     if (isset($itemProject['labels'])) {
                         foreach ($itemProject['labels'] as $labelData) {

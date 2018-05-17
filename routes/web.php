@@ -72,6 +72,6 @@ Route::get('users/pdf/{id}', 'UserController@pdf')
     ->name('users/pdf')
     ->middleware('auth', 'level:2');
 
-Route::get('jira', 'JiraController@get')
+Route::post('jira', 'JiraController@synchronize')
     ->name('jira')
     ->middleware('auth', 'level:2');

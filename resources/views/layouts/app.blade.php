@@ -34,7 +34,9 @@
                 <li><a href="{{ route('home') }}" class="nav-item"><i class="icon ion-home icon-nav-size"></i> Главная</a></li>
                 <li><a href="{{ route('users/show', [ 'id' => auth()->user()->id ]) }}" class="nav-item">
                         <i class="icon ion-person icon-nav-size"></i> Моё CV
+{{--
                         <span class="uk-badge warning-badge" uk-tooltip="title: Заполните свое CV.; pos: right">!</span>
+--}}
                     </a>
                 </li>
                 @level($roleLevels['moderator'])

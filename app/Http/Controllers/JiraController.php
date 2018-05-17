@@ -14,15 +14,25 @@ class JiraController extends Controller
         $this->jiraService = $jiraService;
     }
 
-    public function get()
-    {
-        $login = 'test-test@trash-mail.com';
-        $password = '11111111';
-        $request = '';
-        $request2 = 'issue/10001';
-        $result = $this->jiraService->getProjects($login, $password);
+    /**
+     * test-test@trash-mail.com, 11111111
+     * alinaf@trash-mail.com, 11111111
+     */
 
-        dd($result);
-        //return $arr->fields;
+    /**
+     * Synchronize projects with Jira.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function synchronize(Request $request)
+    {
+        $login = $request['login'];
+        $password = $request['password'];
+        $result = $this->jiraService->synchronize($login, $password);
+
+        return redirect(route('users/show', [ 'id' => auth()->user()->id ]));
     }
 }

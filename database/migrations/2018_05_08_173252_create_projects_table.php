@@ -37,7 +37,6 @@ class CreateProjectsTable extends Migration
             $table->string('description');
 
             $table->string('jira_id')
-                ->unique()
                 ->nullable();
 
             $table->timestamps();

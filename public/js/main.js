@@ -3189,7 +3189,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_create_js__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_update_js__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_all_js__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_show_js__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_show_js__ = __webpack_require__(45);
 
 
 
@@ -3653,7 +3653,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 54:
+/***/ 45:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3665,6 +3665,7 @@ $(function () {
         body.on('click', '.sync-jira-submit', function () {
             var data = $('#sync-jira-form').serializeArray();
             console.log(data);
+            $('#sync-jira-form').submit();
         });
     },
     init: function init() {
