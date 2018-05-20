@@ -15,6 +15,7 @@
         <form action="{{ route('jira/configure') }}" method="POST" class="uk-form-stacked">
             <div class="show-additional">
                 <div class="uk-margin">
+                    <label class="uk-form-label">URL</label>
                     <div class="uk-inline">
                         <input class="uk-input uk-form-width-large" name="jira"
                                placeholder="example.atlassian.net" value="{{ $jira }}" type="text">

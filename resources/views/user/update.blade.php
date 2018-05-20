@@ -401,7 +401,7 @@
         <div class="create-user-buttons">
             <a class="uk-button uk-button-default create-user-button" href="{{ route('home') }}">Отмена</a>
             <button class="uk-button uk-button-primary create-user-button"
-                    id="submit-create-user-button"> Создать</button>
+                    id="submit-create-user-button"> Сохранить</button>
         </div>
     </div>
     <br>

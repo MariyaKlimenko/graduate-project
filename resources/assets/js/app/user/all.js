@@ -34,7 +34,7 @@ export default {
                 {data: 'id', name: 'id', render(data, type, row, meta) {
                          let html = '<i class="icon ion-clipboard table-icon-button table-show-button" data-id="' + data + '"></i>' +
                              '<i class="icon ion-archive table-icon-button table-save-button" data-id="' + data + '"></i>';
-                         if(authLevel > row.level && authLevel >= moderatorLevel) {
+                         if(authLevel >= row.level && authLevel >= moderatorLevel) {
                              html += '<i class="icon ion-compose table-icon-button table-edit-button" data-id="' + data + '"></i>' +
                                  '<i class="icon ion-trash-b table-icon-button table-delete-button" data-id="' + data + '"' +
                                  ' data-surname="' + row.surname + '" data-name="' + row.name + '"></i>';

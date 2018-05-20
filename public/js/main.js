@@ -3190,7 +3190,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_update_js__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_all_js__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_show_js__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__user_settings_js__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__user_settings_js__ = __webpack_require__(46);
 
 
 
@@ -3576,7 +3576,7 @@ $(function () {
             },
             columns: [{ data: 'id', name: 'id', visible: false, searchable: false }, { data: 'surname', name: 'surname' }, { data: 'name', name: 'name' }, { data: 'position', name: 'position' }, { data: 'department', name: 'department' }, { data: 'updated_at', name: 'updated_at' }, { data: 'level', name: 'level', visible: false, searchable: false }, { data: 'role_name', name: 'role_name' }, { data: 'id', name: 'id', render: function render(data, type, row, meta) {
                     var html = '<i class="icon ion-clipboard table-icon-button table-show-button" data-id="' + data + '"></i>' + '<i class="icon ion-archive table-icon-button table-save-button" data-id="' + data + '"></i>';
-                    if (authLevel > row.level && authLevel >= moderatorLevel) {
+                    if (authLevel >= row.level && authLevel >= moderatorLevel) {
                         html += '<i class="icon ion-compose table-icon-button table-edit-button" data-id="' + data + '"></i>' + '<i class="icon ion-trash-b table-icon-button table-delete-button" data-id="' + data + '"' + ' data-surname="' + row.surname + '" data-name="' + row.name + '"></i>';
                     }
                     return html;
@@ -3689,7 +3689,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 55:
+/***/ 46:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
