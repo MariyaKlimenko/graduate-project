@@ -34,4 +34,9 @@ class Project extends Model
     {
         return $this->hasMany(Label::class);
     }
+
+    public function completedIssues()
+    {
+        return $this->hasMany(CompletedIssues::class);
+    }
 }

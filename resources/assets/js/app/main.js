@@ -3,7 +3,7 @@ import createUser from './user/create.js';
 import updateUser from './user/update.js';
 import allUsers from './user/all.js';
 import showUsers from './user/show.js';
-
+import settings from './user/settings.js';
 
 $(function () {
     app.init();
@@ -11,4 +11,5 @@ $(function () {
     allUsers.init();
     updateUser.init();
     showUsers.init();
+    settings.init();
 });

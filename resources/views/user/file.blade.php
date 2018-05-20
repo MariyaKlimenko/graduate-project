@@ -106,8 +106,8 @@
     <div>
         @if(count($user->experiences) > 0)
         <div class="block"><div class="left"><p>ОПЫТ</p></div>
-            <div class="right"><ul class="experience">@foreach($user->experiences as $experience)
-                        <li><b>{{ $experience->name }}</b> - {{ $experience->duration }} ч.</li>
+            <div class="right"><ul class="experience">@foreach($experiences as $experience)
+                        <li><b>{{ $experience['name'] }}</b> - {{ $experience['duration'] }}.</li>
                 @endforeach
                 </ul>
             </div>

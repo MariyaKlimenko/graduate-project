@@ -18,7 +18,7 @@ class Info extends Model
      * @var array
      */
     protected $fillable = [
-        'location', 'phone', 'additional'
+        'location', 'phone', 'additional', 'jira'
     ];
 
     /**

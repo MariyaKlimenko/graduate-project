@@ -12,7 +12,8 @@
         "ultraware/roles": "^5.5",
         "prettus/l5-repository": "*",
         "yajra/laravel-datatables-oracle": "*",
-        "dompdf/dompdf": "*"
+        "dompdf/dompdf": "*",
+        "guzzlehttp/guzzle": "*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

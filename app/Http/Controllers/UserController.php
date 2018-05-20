@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 
 use App\Http\Requests\UpdateUserRequest;
+use App\Mail\ConfirmMail;
+use App\Models\Country;
 use App\Models\Role;
 use App\Repositories\EducationRepository;
 use App\Repositories\RoleRepository;
@@ -17,6 +19,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -56,6 +59,8 @@ class UserController extends Controller
         $data['password'] = '111111';
         $user = $this->userService->store($data);
 
+        Mail::to($user->email)->send(new ConfirmMail($user, $data['password']));
+
         return response()->json([
             'user' => $user
         ]);
@@ -92,6 +97,15 @@ class UserController extends Controller
     public function showCreateForm()
     {
         return view('user.create');
+    }
+
+    public function settings()
+    {
+        if (is_null(auth()->user()->info->jira)) {
+            $jira = '';
+            return view('user.settings')->with(['jira' => $jira]);
+        }
+        return view('user.settings')->with(['jira' => auth()->user()->info->jira]);
     }
 
     /**
@@ -135,6 +149,7 @@ class UserController extends Controller
 
         return view('user.show', [
             'user'      => $user,
+            'experiences' => $this->userService->getExperienceAdapted($userId),
             'userRoleName'  => trans('roles.' . $user->roles->first()->name),
             'userRoleLevel' => $user->roles->first()->level,
             'authUserRole' => auth()->user()->roles->first()
@@ -198,7 +213,11 @@ class UserController extends Controller
     {
         $user = $this->userRepository->find($userId);
         $pdf = new Dompdf();
-        $view = view('user.file')->with(['user' => $user])->render();
+        $view = view('user.file')
+            ->with([
+                'user' => $user,
+                'experiences' => $this->userService->getExperienceAdapted($user->id)
+            ])->render();
         $pdf->loadHtml($view);
 
         $pdf->setPaper('A4', 'portrait');
@@ -208,4 +227,47 @@ class UserController extends Controller
         $fileName = $user->name . '_' . $user->surname . '_CV';
         $pdf->stream($fileName);
     }
+
+    public function changePassword(Request $request)
+    {
+        $oldPassword = $request['old_password'];
+        $newPassword = $request['new_password'];
+        $confirmPassword = $request['confirm_password'];
+
+        $user = auth()->user();
+
+        if ($newPassword != $confirmPassword) {
+            $error = 'Подтвержденный пароль не совпадает.';
+            return response()->json([
+                'error'  => $error,
+            ], 400);
+        }
+
+        $user->password = $newPassword;
+        $user->save();
+        return response()->json([
+            'user'  => $user,
+        ], 200);
+    }
+
+    public function configureJira(Request $request)
+    {
+        $user = auth()->user();
+
+        $user->info->jira = $request['jira'];
+
+        $user->info->save();
+        return redirect(route('settings'));
+    }
+
+    public function updateForm($userId)
+    {
+        $countries = Country::all();
+        $user = $this->userRepository->find($userId);
+        return view('user.update')->with([
+            'user' => $user,
+            'countries' => $countries
+        ]);
+    }
+
 }

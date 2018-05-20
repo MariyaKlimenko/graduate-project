@@ -19,8 +19,13 @@
         </div>
     </div>
 </div>
+<div class="edit-save-buttons">
+    <button class="uk-button uk-button-default uk-button-small save-pdf-button"
+            data-id="{{ $user->id }}">Сохранить PDF</button>
+    <button class="uk-button uk-button-primary uk-button-small update-user-button"
+            data-id="{{ $user->id }}">Редактировать</button>
+</div><br><br>
 <div class="main-body">
-
     <div id="general-info">
         <div class="uk-child-width-1-3 show-user-section"  uk-grid>
             <div>
@@ -161,10 +166,10 @@
 
     <h3>Опыт</h3>
 
-   @foreach($user->experiences as $experience)
+   @foreach($experiences as $experience)
         <span class="show-experience-item">
-            <span class="show-experience-name">{{ $experience->name }}</span>
-            {{ $experience->duration }} ч.
+            <span class="show-experience-name">{{ $experience['name'] }}</span>
+             - {{ $experience['duration'] }}.
         </span>
    @endforeach
 

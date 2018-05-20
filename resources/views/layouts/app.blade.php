@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 @endlevel
-                <li><a href="#" class="nav-item">
+                <li><a href="{{ route('settings') }}" class="nav-item">
                         <i class="icon ion-settings icon-nav-size"></i>
                          Настройки
                     </a>

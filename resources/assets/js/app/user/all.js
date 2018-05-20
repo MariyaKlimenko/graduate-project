@@ -83,6 +83,7 @@ export default {
         });
 
         body.on('click', '.table-edit-button', function () {
+            window.location ="/user/update/" + $(this).data('id');
         });
 
         body.on('click', '.table-delete-button', function (e) {

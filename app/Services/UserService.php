@@ -185,4 +185,31 @@ class UserService
         $this->databaseManager->commit();
         return 'ok';
     }
+
+    public function getExperienceAdapted($userId)
+    {
+        $experienes = $this->userRepository->find($userId)->experiences;
+
+        $adaptedExperiences = [];
+
+        foreach ($experienes as $item) {
+            $experience = ['name' => $item->name];
+            $d = intval($item->duration);
+
+            if ($d < 1970) {
+                $experience['duration'] = 'менее года';
+            } elseif ($d < 3940) {
+                $experience['duration'] = 'менее двух лет';
+            } elseif ($d < 5910) {
+                $experience['duration'] = 'менее трех лет';
+            } elseif ($d < 7880) {
+                $experience['duration'] = 'менее четырех лет';
+            } else {
+                $experience['duration'] = 'более пяти лет';
+            }
+            $adaptedExperiences[] = $experience;
+        }
+
+        return $adaptedExperiences;
+    }
 }

@@ -3190,6 +3190,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_update_js__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_all_js__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__user_show_js__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__user_settings_js__ = __webpack_require__(55);
+
 
 
 
@@ -3202,6 +3204,7 @@ $(function () {
     __WEBPACK_IMPORTED_MODULE_3__user_all_js__["a" /* default */].init();
     __WEBPACK_IMPORTED_MODULE_2__user_update_js__["a" /* default */].init();
     __WEBPACK_IMPORTED_MODULE_4__user_show_js__["a" /* default */].init();
+    __WEBPACK_IMPORTED_MODULE_5__user_settings_js__["a" /* default */].init();
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
@@ -3619,7 +3622,9 @@ $(function () {
             window.location = "/users/pdf/" + $(this).data('id');
         });
 
-        body.on('click', '.table-edit-button', function () {});
+        body.on('click', '.table-edit-button', function () {
+            window.location = "/user/update/" + $(this).data('id');
+        });
 
         body.on('click', '.table-delete-button', function (e) {
             var surname = $(this).data('surname');
@@ -3666,6 +3671,51 @@ $(function () {
             var data = $('#sync-jira-form').serializeArray();
             console.log(data);
             $('#sync-jira-form').submit();
+        });
+
+        body.on('click', '.save-pdf-button', function () {
+            window.location = "/users/pdf/" + $(this).data('id');
+        });
+
+        body.on('click', '.update-user-button', function () {
+            window.location = "/user/update/" + $(this).data('id');
+        });
+    },
+    init: function init() {
+        this.bindEvents();
+    }
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 55:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony default export */ __webpack_exports__["a"] = ({
+    bindEvents: function bindEvents() {
+
+        var body = $('body');
+
+        body.on('click', '#change-pass-button', function () {
+            var data = $('#change-password-form').serializeArray();
+            $.ajax({
+                url: "/password/change",
+                type: "POST",
+                data: data,
+                success: function success(response) {
+                    console.log('success');
+
+                    console.log(response);
+
+                    //window.location.replace('/users/show/' + response.user.id);
+                },
+                error: function error(response) {
+                    console.log(response);
+                    $('.change-password-errors').html('<p class="uk-text-danger">' + '<i class="icon ion-alert uk-text-danger"></i> ' + response.responseJSON.error + '</p>');
+                }
+            });
         });
     },
     init: function init() {

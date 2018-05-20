@@ -75,3 +75,23 @@ Route::get('users/pdf/{id}', 'UserController@pdf')
 Route::post('jira', 'JiraController@synchronize')
     ->name('jira')
     ->middleware('auth', 'level:2');
+
+Route::get('settings', 'UserController@settings')
+    ->name('settings')
+    ->middleware('auth', 'level:2');
+
+Route::get('send', 'UserController@send')
+    ->name('send')
+    ->middleware('auth', 'level:2');
+
+Route::get('user/update/{id}', 'UserController@updateForm')
+    ->name('user/update')
+    ->middleware('auth', 'level:2');
+
+Route::post('password/change', 'UserController@changePassword')
+    ->name('password/change')
+    ->middleware('auth', 'level:1');
+
+Route::post('jira/configure', 'UserController@configureJira')
+    ->name('jira/configure')
+    ->middleware('auth', 'level:1');
