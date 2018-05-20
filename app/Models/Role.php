@@ -20,4 +20,9 @@ class Role extends Model
     const LEVEL_MODERATOR       = 3;
     const LEVEL_EMPLOYEE        = 2;
     const LEVEL_CANDIDATE       = 1;
+
+    public function getTransNameAttribute()
+    {
+        return trans('roles.' . $this->name);
+    }
 }

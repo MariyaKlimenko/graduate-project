@@ -1,7 +1,6 @@
 <?php
 
-namespace Database\Seeds;
-
+use App\Models\Education;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\User;
@@ -15,18 +14,29 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $user = [
-            'name'      => 'admin',
-            'surname'   => 'admin',
-            'email'     => 'admin@admin.com',
-            'password'  => bcrypt('admin1'),
+        $data = [
+            'name'          => 'admin',
+            'surname'       => 'admin',
+            'email'         => 'admin@admin.com',
+            'password'      => 'admin1',
+            'position'      => 'senior',
+            'department'    => 'admin'
             ];
 
-        User::firstOrCreate($user);
+        $infodata = [
+            'location'      => 'Харьков',
+            'phone'         => '10101010'
+        ];
 
-        $admin = User::where('email', 'admin@admin.com')->first();
+        $admin = User::firstOrCreate($data);
+
         $adminRole = Role::find(Role::ID_ADMINISTRATOR);
 
         $admin->attachRole($adminRole);
+
+        $info = $admin->info()->firstOrNew([]);
+
+        $info->fill($infodata);
+        $info->save();
     }
 }

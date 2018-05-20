@@ -6,15 +6,14 @@
 
             <div class="uk-card-secondary card-background uk-card uk-card-body card-shadow uk-text-center">
 
-                <h3 class="uk-heading-line uk-text-center uk-text-muted"><span>Вход в систему</span></h4>
+                <h3 class="uk-heading-line uk-text-center uk-text-muted"><span>Вход в систему</span></h3>
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="uk-margin ">
                             <div class="uk-inline">
-                                <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                                <span class="uk-form-icon"><i class="icon ion-email icon-nav-size"></i></span>
                                 <input class="uk-input auth-input-width" name="email" placeholder="Эл. адресс" type="email" value="{{ old('email') }}" required autofocus>
-
                             </div>
                             @if ($errors->has('email'))
                                 <br>
@@ -26,7 +25,7 @@
 
                         <div class="uk-margin">
                             <div class="uk-inline">
-                                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                                <span class="uk-form-icon uk-form-icon-flip"><i class="icon ion-locked icon-nav-size"></i></span>
                                 <input class="uk-input auth-input-width" placeholder="Пароль" type="password" name="password" required>
 
                                 @if ($errors->has('password'))
