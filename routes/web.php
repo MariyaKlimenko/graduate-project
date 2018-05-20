@@ -40,14 +40,6 @@ Route::get('users/delete/{id}', 'UserController@delete')
     ->name('users/delete')
     ->middleware('auth', 'level:3');
 
-Route::post('users/updateGeneralInfo', 'UserController@update')
-    ->name('users/updateGeneralInfo')
-    ->middleware('auth', 'level:3');
-
-Route::get('users/getUpdateGeneralInfoPartial/{id}', 'PartialsController@getUpdateGeneralInfo')
-    ->name('users/getUpdateGeneralInfoPartial')
-    ->middleware('auth', 'level:3');
-
 Route::get('users/getAddEducationItemPartial/{index}', 'PartialsController@getAddEducationItem')
     ->name('users/getAddEducationItemPartial')
     ->middleware('auth', 'level:3');

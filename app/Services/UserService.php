@@ -133,36 +133,6 @@ class UserService
     }
 
     /**
-     * Updating user's general info.
-     *
-     * @param array $data
-     * @return bool|mixed
-     * @throws Exception
-     * @throws \Throwable
-     */
-    public function update(array $data)
-    {
-        $this->databaseManager->beginTransaction();
-
-        try {
-            $user = $this->userRepository->find($data['id']);
-
-            throw_unless($user, new Exception('User not found.'));
-
-            $user->fill($data);
-
-            $user->info->fill($data);
-
-            throw_unless($user->push(), new Exception('Profile was not stored'));
-        } catch (Exception $exception) {
-            $this->databaseManager->rollBack();
-            return false;
-        }
-        $this->databaseManager->commit();
-        return $user;
-    }
-
-    /**
      * Deletes user.
      *
      * @param $userId
@@ -186,6 +156,12 @@ class UserService
         return 'ok';
     }
 
+    /**
+     * Returns array of user's experiences in special format for "show" view.
+     *
+     * @param $userId
+     * @return array
+     */
     public function getExperienceAdapted($userId)
     {
         $experienes = $this->userRepository->find($userId)->experiences;

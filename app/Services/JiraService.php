@@ -94,6 +94,14 @@ class JiraService
         return $obj;
     }
 
+    /**
+     * Returns project by it's ID from Jira.
+     *
+     * @param $login
+     * @param $password
+     * @param $projectId
+     * @return mixed
+     */
     public function getProject($login, $password, $projectId)
     {
         $request = $this->partUrl . 'project/' . $projectId;
@@ -142,6 +150,9 @@ class JiraService
                 $projectIssues = $this->getProjectIssues($login, $password, $jiraProject->id);
                 $labelsData = [];
 
+                /**
+                 * If current project is new and hasn't been stored yet.
+                 */
                 if (is_null($user->projects()->first()) ||
                     ($user->projects()->where('jira_id', '=', $item->id)->count() == 0)) {
                     $duration = 0;
@@ -206,10 +217,14 @@ class JiraService
                     $project = $this->projectRepository->store($projectData);
                     foreach ($completedIssues as $issueItem) {
                         throw_unless(
-                                $project->completedIssues()->save($issueItem),
-                                new Exception('CompletedIssue was not stored')
+                            $project->completedIssues()->save($issueItem),
+                            new Exception('CompletedIssue was not stored')
                         );
                     }
+
+                /**
+                 * If current project exists in user's profile and we need only update it.
+                 */
                 } else {
                     $project = $user->projects()->where('jira_id', '=', $item->id)->first();
 

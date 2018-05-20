@@ -35,6 +35,11 @@ class Project extends Model
         return $this->hasMany(Label::class);
     }
 
+    /**
+     * Returnes issues of project, which have been already watched.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function completedIssues()
     {
         return $this->hasMany(CompletedIssues::class);

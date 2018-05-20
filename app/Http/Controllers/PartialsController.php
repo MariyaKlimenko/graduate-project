@@ -25,22 +25,6 @@ class PartialsController extends Controller
     }
 
     /**
-     * Returns partial for updating general info.
-     *
-     * @param $id
-     * @return string
-     * @throws \Throwable
-     */
-    public function getUpdateGeneralInfo($id)
-    {
-        $user = $this->userRepository->find($id);
-
-        return view('user.partials.general-info-update')
-            ->with(['user' => $user])
-            ->render();
-    }
-
-    /**
      * Returns partial for adding education item.
      *
      * @param $index

@@ -15,11 +15,6 @@ class JiraController extends Controller
     }
 
     /**
-     * test-test@trash-mail.com, 11111111
-     * alinaf@trash-mail.com, 11111111
-     */
-
-    /**
      * Synchronize projects with Jira.
      *
      * @param Request $request

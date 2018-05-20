@@ -13,22 +13,6 @@ export default {
         }
 
         /**
-         * Ajax request for getting user's general info form partial for updating it.
-         */
-        body.on('click', '.update-general-info-button', function () {
-
-            const id = $(this).data('id');
-
-            $.ajax({
-                url: '/users/getUpdateGeneralInfoPartial/' + id,
-                type: "get",
-                success: function(data) {
-                    $('#general-info').html(data);
-                }
-            });
-        });
-
-        /**
          * Ajax request for updating user's general info
          * and handling errors.
          */

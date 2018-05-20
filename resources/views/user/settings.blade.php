@@ -12,7 +12,7 @@
     <div class="main-body">
 
         <h3 class="uk-heading-divider">Конфигурация Jira</h3>
-        <form action="{{ route('jira/configure') }}" method="POST" class="uk-form-stacked">
+        <form action="" method="POST" id="configure-jira-form" class="uk-form-stacked">
             <div class="show-additional">
                 <div class="uk-margin">
                     <label class="uk-form-label">URL</label>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             {{ csrf_field() }}
-            <button type="submit" class="uk-button uk-button-primary change-password-button">Сохранить</button>
+            <button type="button" id="configure-jira-button" class="uk-button uk-button-primary change-password-button">Сохранить</button>
         </form>
 
 

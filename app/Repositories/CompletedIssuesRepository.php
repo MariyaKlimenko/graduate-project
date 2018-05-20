@@ -13,6 +13,11 @@ use App\Models\CompletedIssues;
 
 class CompletedIssuesRepository extends Repository
 {
+    /**
+     * Model.
+     *
+     * @return string
+     */
     public function model()
     {
         return CompletedIssues::class;

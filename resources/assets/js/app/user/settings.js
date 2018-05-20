@@ -1,5 +1,12 @@
+import UIkit from "../../uikit.min";
+
 export default {
     bindEvents () {
+
+        if(localStorage.getItem('status')){
+            UIkit.notification({message: 'Изменения сохранены.', status: 'success', pos: 'top-right'});
+            localStorage.clear();
+        }
 
         const body = $('body');
 
@@ -10,16 +17,27 @@ export default {
                 type: "POST",
                 data: data,
                 success: function(response) {
-                    console.log('success');
-
-                    console.log(response);
-
-                    //window.location.replace('/users/show/' + response.user.id);
+                    window.location.replace('/settings');
                 },
                 error: function (response) {
-                    console.log(response);
                     $('.change-password-errors').html('<p class="uk-text-danger">' +
                         '<i class="icon ion-alert uk-text-danger"></i> ' + response.responseJSON.error + '</p>')
+
+                }
+            });
+        });
+
+        body.on('click', '#configure-jira-button', function () {
+            const data = $('#configure-jira-form').serializeArray();
+            $.ajax({
+                url: "/jira/configure",
+                type: "POST",
+                data: data,
+                success: function(response) {
+                    localStorage.setItem('status', 'saved');
+                    location.reload();
+                },
+                error: function (response) {
 
                 }
             });

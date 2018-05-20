@@ -228,9 +228,15 @@ class UserController extends Controller
         $pdf->stream($fileName);
     }
 
+    /**
+     * Change password.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function changePassword(Request $request)
     {
-        $oldPassword = $request['old_password'];
+        /*$oldPassword = $request['old_password'];
         $newPassword = $request['new_password'];
         $confirmPassword = $request['confirm_password'];
 
@@ -247,19 +253,31 @@ class UserController extends Controller
         $user->save();
         return response()->json([
             'user'  => $user,
-        ], 200);
+        ], 200);*/
     }
 
+    /**
+     * Configure Jira URl.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function configureJira(Request $request)
     {
         $user = auth()->user();
 
         $user->info->jira = $request['jira'];
 
-        $user->info->save();
-        return redirect(route('settings'));
+        $result = $user->info->save();
+        return response()->json(['result' => $result], 200);
     }
 
+    /**
+     * Returns update form view.
+     *
+     * @param $userId
+     * @return $this
+     */
     public function updateForm($userId)
     {
         $countries = Country::all();
