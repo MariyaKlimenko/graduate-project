@@ -17,7 +17,7 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'email', 'password',
+        'name', 'surname', 'email', 'password', 'position', 'department', 'photo'
     ];
 
     /**
@@ -26,6 +26,54 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'remember_token',
     ];
+
+    /**
+     * Set encrypted password attribute.
+     * @param string $password
+     */
+    public function setPasswordAttribute(string $password): void
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Get the info of the user.
+     */
+    public function info()
+    {
+        return $this->hasOne(Info::class);
+    }
+
+    /**
+     * Get user's education.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function education()
+    {
+        return $this->hasMany(Education::class);
+    }
+
+    /**
+     * Get user's experiences.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
+
+    /**
+     * Get user's projects.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
 }

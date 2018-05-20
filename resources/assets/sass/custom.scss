@@ -2,7 +2,7 @@
 $violet: rgb(64, 0, 128);
 $greyblue: rgba(208, 208, 225, 0.8);
 $dark-violet: rgba(13, 0, 26, 0.95);
-$light-green: rgba(242, 255, 230, 0.74);
+$light-green: rgba(0, 255, 0, 0.06);
 $red: rgb(153, 0, 0);
 
 *{
@@ -32,13 +32,13 @@ $red: rgb(153, 0, 0);
   bottom:0;
   box-sizing:border-box;
   width:190px !important;
-  padding:100px 40px 60px 40px;
+  padding:100px 25px 60px 25px;
   border-right:1px #e5e5e5 solid;
   overflow:auto
 }
 
 .nav-item {
-  font-size: 12pt !important;
+  font-size: 14pt !important;
   color: #c7c7c7 !important;
 }
 .nav-item:hover {
@@ -47,20 +47,268 @@ $red: rgb(153, 0, 0);
 
 .main-block {
   position: absolute;
-  //background-color: $light-green;
   height: 100%;
   right: 0;
   left: 185px !important;
   bottom:0;
   top:0;
+}
+
+.main-heading {
+  background-color: $light-green !important;
+  height: 50px;
+  padding: 30px 30px 30px 30px;
+  margin-left: 5px;
+}
+
+.main-body {
   padding: 30px 30px 30px 30px;
 }
 
 .warning-badge {
+  margin-bottom: 5px;
+  padding-bottom: 3px;
+  padding-left: 3px;
   background-color: $red !important;
 }
 
 .create-user-buttons {
   right: 30px;
   position: absolute;
+}
+
+.icon-nav-size {
+  font-size: 20px !important;
+}
+
+#all-users-datatable_length {
+  position: absolute !important;
+  width: 150px !important;
+  right: 45px !important;
+}
+
+#all-users-datatable_filter {
+  width: 300px !important;
+  padding-left: 5px !important;
+}
+
+.all-users-datatable-select {
+  width: 60px !important;
+}
+
+.all-users-datatable-input {
+  width: 200px !important;
+}
+
+.users-datatable-block {
+  padding-bottom: 50px !important;
+  padding-left: 10px;
+}
+.datatable-th {
+  padding-right: 25px !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2224%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23666%22%20points%3D%2212%201%209%206%2015%206%22%20%2F%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23666%22%20points%3D%2212%2013%209%208%2015%208%22%20%2F%3E%0A%3C%2Fsvg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: right 14px;
+}
+
+.paginate_button {
+  color: rgb(147, 147, 147) !important;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+  text-decoration: none !important;
+  transition: 300ms;
+}
+
+.paginate_button:hover,
+.paginate_button.current,
+.pagination-arrows:hover,
+.table-icon-button:hover {
+  color: rgb(67, 67, 67) !important;
+  text-decoration: none !important;
+}
+
+.pagination-arrows {
+  color: rgb(147, 147, 147) !important;
+  font-size: 12px !important;
+  transition: 300ms;
+}
+
+.all-users-datatable-block {
+  position: absolute;
+  right: 60px;
+}
+
+.table-icon-button {
+  font-size: 22px !important;
+  color: rgb(147, 147, 147) !important;
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+#all-users-datatable tbody tr:nth-of-type(2n+1) {
+  background-color: $light-green !important;
+}
+
+.show-user-p {
+  height: 17px !important;
+  color: rgb(51, 51, 51) !important;
+  border-bottom: 1px solid;
+  border-color: rgba(229, 229, 229, 0.38);
+  width: 470px;
+  padding: 7px 0 8px 10px;
+}
+
+.show-user-p-3 {
+  @extend .show-user-p;
+  width: 300px;
+}
+
+.show-user-p-2-3 {
+  @extend .show-user-p;
+  width: 110px;
+}
+
+.show-user-label {
+  color: rgb(102, 102, 102) !important;
+}
+
+.datatable-options-column {
+  width: 115px !important;
+}
+
+.heading-role {
+  font-size: 14pt;
+  margin-top: 0;
+}
+
+.add-item-button {
+  padding: 0 !important;
+  height: 35px !important;
+  width: 35px !important;
+  margin-bottom: 20px;
+}
+.add-item-icon {
+  font-size: 40pt;
+  line-height: 25px !important;
+}
+
+.education-is-not-finished-label {
+  font-size: 13pt;
+  line-height: 40px;
+}
+
+.show-user-section {
+  margin-left: 5px;
+}
+
+.show-user-updated-at {
+  text-align: right;
+  margin-top: 40px;
+  color: rgb(147, 147, 147);
+}
+
+.experience-label {
+  padding-left: 5px !important;
+  padding-top: 7px !important;
+}
+
+.experience-item-form, .label-item-form {
+  margin-top: 0 !important;
+  margin-bottom: 20px !important;
+}
+
+.show-experience-item {
+  display: inline-block;
+  background-color: $light-green;
+  padding: 7px;
+  font-size: 11pt;
+  margin: 5px !important;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.show-experience-name {
+  font-weight: bold ;
+  font-size: 14pt;
+}
+
+.delete-label-button-icon {
+  color: white !important;
+  font-size: 15pt;
+  line-height: 30px;
+}
+
+.delete-item-button {
+  @extend .add-item-button;
+  margin-top: 2px;
+}
+
+.divider {
+  margin-top: 0 !important;
+}
+
+#image-place {
+  margin-top: 30px;
+  height: 250px;
+  width: 250px;
+  border: solid 3px $light-green;
+  border-radius: 5px;
+}
+
+.profile-image {
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+  border: solid 0 transparent;
+  border-radius: 5px;
+}
+
+.add-photo-button {
+  width: 250px;
+  border-color: $light-green;
+  border-width: 3px;
+}
+
+.delete-photo-button {
+  margin: 0 !important;
+  padding: 5px !important;
+  border: solid 0 transparent;
+}
+
+.show-project-description {
+  width: 470px;
+  color: rgb(51, 51, 51) !important;
+}
+
+.file-class{
+  font-family: 'Didact Gothic', sans-serif !important;
+  color: blue;
+}
+
+.show-additional {
+  margin-left: 45px;
+}
+
+.show-additional-p {
+  color: rgb(51, 51, 51) !important;
+}
+
+.sync-jira-button{
+  margin-left: 30px;
+}
+
+.sync-jira-modal {
+  width: 400px;
+}
+
+.change-password-button {
+  margin-left: 408px;
+}
+
+.edit-save-buttons {
+  float: right;
+  margin-right: 20px;
+  margin-top: 20px;
 }
